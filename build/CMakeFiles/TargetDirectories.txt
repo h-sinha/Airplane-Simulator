@@ -1,0 +1,3 @@
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/rebuild_cache.dir
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/graphics_asgn1.dir
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/edit_cache.dir
