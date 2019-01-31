@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulato
 CMAKE_BINARY_DIR = /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/graphics_asgn1.dir
+# Target rules for target CMakeFiles/airplane_simulator.dir
 
 # All Build rule for target.
-CMakeFiles/graphics_asgn1.dir/all:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/depend
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target graphics_asgn1"
-.PHONY : CMakeFiles/graphics_asgn1.dir/all
+CMakeFiles/airplane_simulator.dir/all:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/depend
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target airplane_simulator"
+.PHONY : CMakeFiles/airplane_simulator.dir/all
 
 # Include target in all.
-all: CMakeFiles/graphics_asgn1.dir/all
+all: CMakeFiles/airplane_simulator.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/graphics_asgn1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/graphics_asgn1.dir/all
+CMakeFiles/airplane_simulator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/airplane_simulator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles 0
-.PHONY : CMakeFiles/graphics_asgn1.dir/rule
+.PHONY : CMakeFiles/airplane_simulator.dir/rule
 
 # Convenience name for target.
-graphics_asgn1: CMakeFiles/graphics_asgn1.dir/rule
+airplane_simulator: CMakeFiles/airplane_simulator.dir/rule
 
-.PHONY : graphics_asgn1
-
-# clean rule for target.
-CMakeFiles/graphics_asgn1.dir/clean:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/clean
-.PHONY : CMakeFiles/graphics_asgn1.dir/clean
+.PHONY : airplane_simulator
 
 # clean rule for target.
-clean: CMakeFiles/graphics_asgn1.dir/clean
+CMakeFiles/airplane_simulator.dir/clean:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/clean
+.PHONY : CMakeFiles/airplane_simulator.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/airplane_simulator.dir/clean
 
 .PHONY : clean
 

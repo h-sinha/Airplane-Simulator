@@ -130,7 +130,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=graphics_asgn1
+CMAKE_PROJECT_NAME:STATIC=airplane_simulator
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -185,10 +185,10 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //Value Computed by CMake
-graphics_asgn1_BINARY_DIR:STATIC=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build
+airplane_simulator_BINARY_DIR:STATIC=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build
 
 //Value Computed by CMake
-graphics_asgn1_SOURCE_DIR:STATIC=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator
+airplane_simulator_SOURCE_DIR:STATIC=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator
 
 
 ########################

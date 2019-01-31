@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named graphics_asgn1
+# Target rules for targets named airplane_simulator
 
 # Build rule for target.
-graphics_asgn1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 graphics_asgn1
-.PHONY : graphics_asgn1
+airplane_simulator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 airplane_simulator
+.PHONY : airplane_simulator
 
 # fast build rule for target.
-graphics_asgn1/fast:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/build
-.PHONY : graphics_asgn1/fast
+airplane_simulator/fast:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/build
+.PHONY : airplane_simulator/fast
+
+src/background.o: src/background.cpp.o
+
+.PHONY : src/background.o
+
+# target to build an object file
+src/background.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/background.cpp.o
+.PHONY : src/background.cpp.o
+
+src/background.i: src/background.cpp.i
+
+.PHONY : src/background.i
+
+# target to preprocess a source file
+src/background.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/background.cpp.i
+.PHONY : src/background.cpp.i
+
+src/background.s: src/background.cpp.s
+
+.PHONY : src/background.s
+
+# target to generate assembly for a file
+src/background.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/background.cpp.s
+.PHONY : src/background.cpp.s
 
 src/ball.o: src/ball.cpp.o
 
@@ -129,7 +156,7 @@ src/ball.o: src/ball.cpp.o
 
 # target to build an object file
 src/ball.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/ball.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/ball.cpp.o
 .PHONY : src/ball.cpp.o
 
 src/ball.i: src/ball.cpp.i
@@ -138,7 +165,7 @@ src/ball.i: src/ball.cpp.i
 
 # target to preprocess a source file
 src/ball.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/ball.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/ball.cpp.i
 .PHONY : src/ball.cpp.i
 
 src/ball.s: src/ball.cpp.s
@@ -147,7 +174,7 @@ src/ball.s: src/ball.cpp.s
 
 # target to generate assembly for a file
 src/ball.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/ball.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
 
 src/color.o: src/color.cpp.o
@@ -156,7 +183,7 @@ src/color.o: src/color.cpp.o
 
 # target to build an object file
 src/color.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/color.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/color.cpp.o
 .PHONY : src/color.cpp.o
 
 src/color.i: src/color.cpp.i
@@ -165,7 +192,7 @@ src/color.i: src/color.cpp.i
 
 # target to preprocess a source file
 src/color.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/color.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/color.cpp.i
 .PHONY : src/color.cpp.i
 
 src/color.s: src/color.cpp.s
@@ -174,8 +201,35 @@ src/color.s: src/color.cpp.s
 
 # target to generate assembly for a file
 src/color.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/color.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
+
+src/functions.o: src/functions.cpp.o
+
+.PHONY : src/functions.o
+
+# target to build an object file
+src/functions.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/functions.cpp.o
+.PHONY : src/functions.cpp.o
+
+src/functions.i: src/functions.cpp.i
+
+.PHONY : src/functions.i
+
+# target to preprocess a source file
+src/functions.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/functions.cpp.i
+.PHONY : src/functions.cpp.i
+
+src/functions.s: src/functions.cpp.s
+
+.PHONY : src/functions.s
+
+# target to generate assembly for a file
+src/functions.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/functions.cpp.s
+.PHONY : src/functions.cpp.s
 
 src/input.o: src/input.cpp.o
 
@@ -183,7 +237,7 @@ src/input.o: src/input.cpp.o
 
 # target to build an object file
 src/input.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/input.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/input.cpp.o
 .PHONY : src/input.cpp.o
 
 src/input.i: src/input.cpp.i
@@ -192,7 +246,7 @@ src/input.i: src/input.cpp.i
 
 # target to preprocess a source file
 src/input.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/input.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/input.cpp.i
 .PHONY : src/input.cpp.i
 
 src/input.s: src/input.cpp.s
@@ -201,7 +255,7 @@ src/input.s: src/input.cpp.s
 
 # target to generate assembly for a file
 src/input.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/input.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/input.cpp.s
 .PHONY : src/input.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -210,7 +264,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -219,7 +273,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -228,7 +282,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/nonedit.o: src/nonedit.cpp.o
@@ -237,7 +291,7 @@ src/nonedit.o: src/nonedit.cpp.o
 
 # target to build an object file
 src/nonedit.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o
 .PHONY : src/nonedit.cpp.o
 
 src/nonedit.i: src/nonedit.cpp.i
@@ -246,7 +300,7 @@ src/nonedit.i: src/nonedit.cpp.i
 
 # target to preprocess a source file
 src/nonedit.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.i
 .PHONY : src/nonedit.cpp.i
 
 src/nonedit.s: src/nonedit.cpp.s
@@ -255,7 +309,7 @@ src/nonedit.s: src/nonedit.cpp.s
 
 # target to generate assembly for a file
 src/nonedit.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/nonedit.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.s
 .PHONY : src/nonedit.cpp.s
 
 src/other_handlers.o: src/other_handlers.cpp.o
@@ -264,7 +318,7 @@ src/other_handlers.o: src/other_handlers.cpp.o
 
 # target to build an object file
 src/other_handlers.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o
 .PHONY : src/other_handlers.cpp.o
 
 src/other_handlers.i: src/other_handlers.cpp.i
@@ -273,7 +327,7 @@ src/other_handlers.i: src/other_handlers.cpp.i
 
 # target to preprocess a source file
 src/other_handlers.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.i
 .PHONY : src/other_handlers.cpp.i
 
 src/other_handlers.s: src/other_handlers.cpp.s
@@ -282,7 +336,7 @@ src/other_handlers.s: src/other_handlers.cpp.s
 
 # target to generate assembly for a file
 src/other_handlers.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/other_handlers.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.s
 .PHONY : src/other_handlers.cpp.s
 
 src/timer.o: src/timer.cpp.o
@@ -291,7 +345,7 @@ src/timer.o: src/timer.cpp.o
 
 # target to build an object file
 src/timer.cpp.o:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/timer.cpp.o
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/timer.cpp.o
 .PHONY : src/timer.cpp.o
 
 src/timer.i: src/timer.cpp.i
@@ -300,7 +354,7 @@ src/timer.i: src/timer.cpp.i
 
 # target to preprocess a source file
 src/timer.cpp.i:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/timer.cpp.i
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/timer.cpp.i
 .PHONY : src/timer.cpp.i
 
 src/timer.s: src/timer.cpp.s
@@ -309,7 +363,7 @@ src/timer.s: src/timer.cpp.s
 
 # target to generate assembly for a file
 src/timer.cpp.s:
-	$(MAKE) -f CMakeFiles/graphics_asgn1.dir/build.make CMakeFiles/graphics_asgn1.dir/src/timer.cpp.s
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/timer.cpp.s
 .PHONY : src/timer.cpp.s
 
 # Help Target
@@ -319,14 +373,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... graphics_asgn1"
+	@echo "... airplane_simulator"
 	@echo "... edit_cache"
+	@echo "... src/background.o"
+	@echo "... src/background.i"
+	@echo "... src/background.s"
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/functions.o"
+	@echo "... src/functions.i"
+	@echo "... src/functions.s"
 	@echo "... src/input.o"
 	@echo "... src/input.i"
 	@echo "... src/input.s"

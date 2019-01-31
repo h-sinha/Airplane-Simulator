@@ -1,6 +1,7 @@
 #include "main.h"
 #include "timer.h"
 #include "ball.h"
+#include "background.h"
 
 using namespace std;
 
@@ -13,10 +14,11 @@ GLFWwindow *window;
 **************************/
 
 Ball ball1;
+Background background;
 
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
-float camera_rotation_angle = 0;
-
+float camera_rotation_angle = 95.0;
+float eyex, eyey, eyez, targetx, targety, targetz;
 Timer t60(1.0 / 60);
 
 /* Render the scene with openGL */
@@ -28,11 +30,21 @@ void draw() {
     // use the loaded shader program
     // Don't change unless you know what you are doing
     glUseProgram (programID);
-
+    eyex = targetx + 10*cos(camera_rotation_angle*M_PI/180.0f);
+    eyey = targety - 10;
+    eyez = targetz + 10*sin(camera_rotation_angle*M_PI/180.0f);
+    // targetx = ball1.position.x;
+    // targety = ball1.position.y;
+    // targetz = ball1.position.z;
+    // eyex = ball1.position.x;
+    // eyey = ball1.position.y;
+    // eyez = ball1.position.z - ball1.zlength;
+    // cout<<eyex, 
+    eyey = -3.0;
     // Eye - Location of camera. Don't change unless you are sure!!
-    glm::vec3 eye ( 5*cos(camera_rotation_angle*M_PI/180.0f), 0, 5*sin(camera_rotation_angle*M_PI/180.0f) );
+    glm::vec3 eye (eyex, eyey, eyez );
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
-    glm::vec3 target (0, 0, 0);
+    glm::vec3 target (targetx, targety, targetz);
     // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
     glm::vec3 up (0, 1, 0);
 
@@ -52,6 +64,8 @@ void draw() {
 
     // Scene render
     ball1.draw(VP);
+    background.draw(VP);
+
 }
 
 void tick_input(GLFWwindow *window) {
@@ -64,7 +78,9 @@ void tick_input(GLFWwindow *window) {
 
 void tick_elements() {
     ball1.tick();
-    camera_rotation_angle += 1;
+    background.tick();
+    background.set_position(ball1.position.x,ball1.position.y,ball1.position.z );
+    // camera_rotation_angle += 1;
 }
 
 /* Initialize the OpenGL rendering properties */
@@ -73,7 +89,8 @@ void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
 
-    ball1       = Ball(0, 0, COLOR_RED);
+    ball1       = Ball(3.0, 3.0,0, COLOR_RED);
+    background  = Background(0, 0,0, COLOR_WATER);
 
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
@@ -99,7 +116,7 @@ void initGL(GLFWwindow *window, int width, int height) {
 
 int main(int argc, char **argv) {
     srand(time(0));
-    int width  = 600;
+    int width  = 1000;
     int height = 600;
 
     window = initGLFW(width, height);
@@ -134,9 +151,9 @@ bool detect_collision(bounding_box_t a, bounding_box_t b) {
 }
 
 void reset_screen() {
-    float top    = screen_center_y + 4 / screen_zoom;
-    float bottom = screen_center_y - 4 / screen_zoom;
-    float left   = screen_center_x - 4 / screen_zoom;
-    float right  = screen_center_x + 4 / screen_zoom;
+    float top    = 10 / screen_zoom;
+    float bottom = 0;
+    float left   = 0;
+    float right  = 10 / screen_zoom;
     Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
 }
