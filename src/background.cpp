@@ -2,7 +2,7 @@
 #include "main.h"
 
 Background::Background(float x, float y,float z, color_t color) {
-    this->position = glm::vec3(x, y, z);
+    this->position = glm::vec3(0.0, -10.0, 0.0);
     this->rotation = 0;
     speed = 1;
     // Our vertices. Three consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.

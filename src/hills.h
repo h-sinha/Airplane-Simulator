@@ -1,13 +1,13 @@
 #include "main.h"
 
-#ifndef BALL_H
-#define BALL_H
+#ifndef HILLS_H
+#define HILLS_H
 
 
-class Ball {
+class Hills {
 public:
-    Ball() {}
-    Ball(float x, float y,float z, color_t color);
+    Hills() {}
+    Hills(float x, float y,float z);
     glm::vec3 position;
     float yaw, pitch, roll;
     void draw(glm::mat4 VP);

@@ -123,6 +123,33 @@ airplane_simulator/fast:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/build
 .PHONY : airplane_simulator/fast
 
+src/airplane.o: src/airplane.cpp.o
+
+.PHONY : src/airplane.o
+
+# target to build an object file
+src/airplane.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o
+.PHONY : src/airplane.cpp.o
+
+src/airplane.i: src/airplane.cpp.i
+
+.PHONY : src/airplane.i
+
+# target to preprocess a source file
+src/airplane.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/airplane.cpp.i
+.PHONY : src/airplane.cpp.i
+
+src/airplane.s: src/airplane.cpp.s
+
+.PHONY : src/airplane.s
+
+# target to generate assembly for a file
+src/airplane.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/airplane.cpp.s
+.PHONY : src/airplane.cpp.s
+
 src/background.o: src/background.cpp.o
 
 .PHONY : src/background.o
@@ -230,6 +257,33 @@ src/functions.s: src/functions.cpp.s
 src/functions.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/functions.cpp.s
 .PHONY : src/functions.cpp.s
+
+src/hills.o: src/hills.cpp.o
+
+.PHONY : src/hills.o
+
+# target to build an object file
+src/hills.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/hills.cpp.o
+.PHONY : src/hills.cpp.o
+
+src/hills.i: src/hills.cpp.i
+
+.PHONY : src/hills.i
+
+# target to preprocess a source file
+src/hills.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/hills.cpp.i
+.PHONY : src/hills.cpp.i
+
+src/hills.s: src/hills.cpp.s
+
+.PHONY : src/hills.s
+
+# target to generate assembly for a file
+src/hills.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/hills.cpp.s
+.PHONY : src/hills.cpp.s
 
 src/input.o: src/input.cpp.o
 
@@ -375,6 +429,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... airplane_simulator"
 	@echo "... edit_cache"
+	@echo "... src/airplane.o"
+	@echo "... src/airplane.i"
+	@echo "... src/airplane.s"
 	@echo "... src/background.o"
 	@echo "... src/background.i"
 	@echo "... src/background.s"
@@ -387,6 +444,9 @@ help:
 	@echo "... src/functions.o"
 	@echo "... src/functions.i"
 	@echo "... src/functions.s"
+	@echo "... src/hills.o"
+	@echo "... src/hills.i"
+	@echo "... src/hills.s"
 	@echo "... src/input.o"
 	@echo "... src/input.i"
 	@echo "... src/input.s"

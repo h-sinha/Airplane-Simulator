@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.cpp
+airplane.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.cpp
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
@@ -40,6 +52,18 @@ functions.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.cpp
+hills.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/input.cpp
 iostream
 -
@@ -69,6 +93,10 @@ timer.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.h
 ball.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/ball.h
+airplane.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.h
+hills.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
 

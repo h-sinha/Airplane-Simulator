@@ -1,14 +1,15 @@
 #include "main.h"
 
-#ifndef BALL_H
-#define BALL_H
+#ifndef AIRPLANE_H
+#define AIRPLANE_H
 
 
-class Ball {
+class Airplane {
 public:
-    Ball() {}
-    Ball(float x, float y,float z, color_t color);
+    Airplane() {}
+    Airplane(float x, float y,float z, color_t color);
     glm::vec3 position;
+    int moving;
     float yaw, pitch, roll;
     void draw(glm::mat4 VP);
     void set_position(float x, float y, float z);
@@ -17,6 +18,12 @@ public:
     double xlength, ylength, zlength;
 private:
     VAO *object;
+    VAO *object1;
+    VAO *object2;
+    VAO *fan1;
+    VAO *fan2;
+    VAO *cockpit;
+    VAO *mov;
 };
 
 #endif // BALL_H

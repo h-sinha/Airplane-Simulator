@@ -1,6 +1,8 @@
 #include "main.h"
 #include "timer.h"
 #include "ball.h"
+#include "airplane.h"
+#include "hills.h"
 #include "background.h"
 
 using namespace std;
@@ -13,12 +15,16 @@ GLFWwindow *window;
 * Customizable functions *
 **************************/
 
+std::vector<Hills> Hillpos;
 Ball ball1;
+Airplane airplane;
 Background background;
 
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
-float camera_rotation_angle = 95.0;
+float camera_rotation_angle = 0.0;
 float eyex, eyey, eyez, targetx, targety, targetz;
+bool follow_cam = 1, helicopter_cam = 0, tower_view = 0, plane_view = 0,
+top_view= 0;
 Timer t60(1.0 / 60);
 
 /* Render the scene with openGL */
@@ -26,21 +32,18 @@ Timer t60(1.0 / 60);
 void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     // use the loaded shader program
     // Don't change unless you know what you are doing
     glUseProgram (programID);
-    eyex = targetx + 10*cos(camera_rotation_angle*M_PI/180.0f);
-    eyey = targety - 10;
-    eyez = targetz + 10*sin(camera_rotation_angle*M_PI/180.0f);
-    // targetx = ball1.position.x;
-    // targety = ball1.position.y;
-    // targetz = ball1.position.z;
-    // eyex = ball1.position.x;
-    // eyey = ball1.position.y;
-    // eyez = ball1.position.z - ball1.zlength;
-    // cout<<eyex, 
-    eyey = -3.0;
+    if(follow_cam)
+    {
+        targetx = airplane.position.x;
+        targety = airplane.position.y;
+        targetz = airplane.position.z;
+        eyex = airplane.position.x ;
+        eyey = airplane.position.y + 3;
+        eyez = airplane.position.z - 2;
+    }
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye (eyex, eyey, eyez );
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
@@ -64,22 +67,49 @@ void draw() {
 
     // Scene render
     ball1.draw(VP);
+    airplane.draw(VP);
     background.draw(VP);
+    for(auto &x:Hillpos)x.draw(VP);
 
 }
 
 void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_LEFT);
     int right = glfwGetKey(window, GLFW_KEY_RIGHT);
+    int up = glfwGetKey(window, GLFW_KEY_UP);
+    int down = glfwGetKey(window, GLFW_KEY_DOWN);
+    int space = glfwGetKey(window, GLFW_KEY_SPACE);
+    airplane.moving = 0;
     if (left) {
-        // Do something
+        airplane.position.x += 0.1;
+        airplane.moving = 1;
+    }
+    if(right){
+        airplane.position.x -= 0.1;
+        airplane.moving = 1;
+    }
+    if(up){
+        airplane.position.z += 0.1;
+        airplane.moving = 1;
+    }
+    if(down){
+        airplane.position.z -= 0.1;
+        airplane.moving = 1;
+    }
+    if(space){
+        airplane.position.y += 0.1;
+        airplane.moving = 1;
     }
 }
 
 void tick_elements() {
-    ball1.tick();
+    airplane.tick();
     background.tick();
-    background.set_position(ball1.position.x,ball1.position.y,ball1.position.z );
+    for (auto&x:Hillpos)
+    {
+        x.tick();
+    }
+    // background.set_position(ball1.position.x,ball1.position.y,ball1.position.z );
     // camera_rotation_angle += 1;
 }
 
@@ -90,7 +120,16 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Create the models
 
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
+    airplane       = Airplane(6.0, 2.0,2, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
+    Hills hills;
+    for (int i = 0; i < 1000; ++i)
+    {
+        float posx = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));
+        hills = Hills(posx,0.0, posz);
+        Hillpos.push_back(hills);
+    }
 
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
@@ -151,9 +190,19 @@ bool detect_collision(bounding_box_t a, bounding_box_t b) {
 }
 
 void reset_screen() {
-    float top    = 10 / screen_zoom;
-    float bottom = 0;
-    float left   = 0;
-    float right  = 10 / screen_zoom;
-    Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
+    float width = 1000;
+    float height = 600;
+    // float top    = screen_center_y + 4 / screen_zoom;
+    // float bottom = screen_center_y - 4 / screen_zoom;
+    // float left   = screen_center_x - 4 / screen_zoom;
+    // float right  = screen_center_x + 4 / screen_zoom;
+    // Matrices.projection = glm::perspective(left, right, bottom, top, 0.1f, 500.0f);
+     gluPerspective(1.0f, 1000.0/600.0,0.1f, 500.0f);
+    // glMatrixMode(GL_MODELVIEW);
+    // glViewport(0, 0, width, height);
+//     float top    = 10 / screen_zoom;
+//     float bottom = 0;
+//     float left   = 0;
+//     float right  = 10 / screen_zoom;
+//     Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
 }

@@ -20,6 +20,7 @@ struct color_t {
     int g;
     int b;
 };
+const double PI = 3.141592653589793238460;
 
 // nonedit.cpp
 GLFWwindow *initGLFW(int width, int height);
@@ -78,10 +79,27 @@ extern float screen_zoom, screen_center_x, screen_center_y;
 void reset_screen();
 
 // ---- Colors ----
+extern const color_t COLOR_WATER;
+
 extern const color_t COLOR_RED;
+extern const color_t COLOR_DARK_RED;
 extern const color_t COLOR_GREEN;
 extern const color_t COLOR_BLACK;
-extern const color_t COLOR_WATER;
+extern const color_t COLOR_WHITE;
+extern const color_t COLOR_BLUE;
+extern const color_t COLOR_BROWN;
+extern const color_t COLOR_LIGHT_BROWN;
+extern const color_t COLOR_YELLOW;
+extern const color_t COLOR_GREEN;
 extern const color_t COLOR_BACKGROUND;
+extern const color_t COLOR_MIDNIGHT_BLUE;
+extern const color_t COLOR_GAINS_BORO;
+extern const color_t COLOR_HOT_PINK;
+extern const color_t COLOR_LIGHT_SLATE_GREY;
+extern const color_t COLOR_NEON_GREEN;
+extern const color_t COLOR_COIN;
+extern const color_t COLOR_BALL;
+extern const color_t COLOR_test;
+
 
 #endif

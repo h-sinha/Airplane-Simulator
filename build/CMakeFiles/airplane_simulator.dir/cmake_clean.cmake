@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/background.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/ball.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/color.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/functions.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/input.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/main.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
