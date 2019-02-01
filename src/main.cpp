@@ -23,9 +23,10 @@ Background background;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0.0;
 float eyex, eyey, eyez, targetx, targety, targetz;
-bool follow_cam = 1, helicopter_cam = 0, tower_view = 0, plane_view = 0,
-top_view= 0;
+bool cam[5];
+int current_camera = 0;
 Timer t60(1.0 / 60);
+time_t cam_change_time = 0.0;
 
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
@@ -35,7 +36,54 @@ void draw() {
     // use the loaded shader program
     // Don't change unless you know what you are doing
     glUseProgram (programID);
-    if(follow_cam)
+    // 0 follow_cam
+    // 1 plane_view
+    // 2 top_view
+    // 3 tower_view
+    // 4 helicopter_cam
+    
+    //followcam
+    if(cam[0])
+    {
+         targetx = airplane.position.x;
+        targety = airplane.position.y;
+        targetz = airplane.position.z;
+        eyex = airplane.position.x ;
+        eyey = airplane.position.y + 3;
+        eyez = airplane.position.z - 2;
+    }
+    // 1 plane_view
+    else if(cam[1])
+    {
+         targetx = airplane.position.x;
+        targety = 0.0f;
+        targetz = 1000.0f;
+        eyex = airplane.position.x ;
+        eyey = airplane.position.y ;
+        eyez = airplane.position.z + 3;
+    }
+     // 2 top_view
+     else if(cam[2])
+    {
+        targetx = airplane.position.x;
+        targety = airplane.position.y;
+        targetz = airplane.position.z;
+        eyex = airplane.position.x ;
+        eyey = airplane.position.y + 15;
+        eyez = airplane.position.z - 2;
+    }
+     // 3 tower_view
+     else if(cam[3])
+    {
+        targetx = airplane.position.x;
+        targety = airplane.position.y;
+        targetz = airplane.position.z;
+        eyex = airplane.position.x + 10;
+        eyey = airplane.position.y + 10;
+        eyez = airplane.position.z ;
+    }
+    // 4 helicopter_cam
+     else if(cam[4])
     {
         targetx = airplane.position.x;
         targety = airplane.position.y;
@@ -79,6 +127,7 @@ void tick_input(GLFWwindow *window) {
     int up = glfwGetKey(window, GLFW_KEY_UP);
     int down = glfwGetKey(window, GLFW_KEY_DOWN);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
+    int camera = glfwGetKey(window, GLFW_KEY_C);
     airplane.moving = 0;
     if (left) {
         airplane.position.x += 0.1;
@@ -100,6 +149,14 @@ void tick_input(GLFWwindow *window) {
         airplane.position.y += 0.1;
         airplane.moving = 1;
     }
+    if(camera && time(NULL) - cam_change_time > 1.0)
+    {
+        cam[current_camera] = 0;
+        current_camera++;
+        current_camera%=5;
+        cam[current_camera] = 1;
+        cam_change_time = time(NULL);
+    }
 }
 
 void tick_elements() {
@@ -118,7 +175,7 @@ void tick_elements() {
 void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
-
+    cam[0] = 1;
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
     airplane       = Airplane(6.0, 2.0,2, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
