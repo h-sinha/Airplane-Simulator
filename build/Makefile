@@ -339,6 +339,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/missile.o: src/missile.cpp.o
+
+.PHONY : src/missile.o
+
+# target to build an object file
+src/missile.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/missile.cpp.o
+.PHONY : src/missile.cpp.o
+
+src/missile.i: src/missile.cpp.i
+
+.PHONY : src/missile.i
+
+# target to preprocess a source file
+src/missile.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/missile.cpp.i
+.PHONY : src/missile.cpp.i
+
+src/missile.s: src/missile.cpp.s
+
+.PHONY : src/missile.s
+
+# target to generate assembly for a file
+src/missile.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/missile.cpp.s
+.PHONY : src/missile.cpp.s
+
 src/nonedit.o: src/nonedit.cpp.o
 
 .PHONY : src/nonedit.o
@@ -453,6 +480,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/missile.o"
+	@echo "... src/missile.i"
+	@echo "... src/missile.s"
 	@echo "... src/nonedit.o"
 	@echo "... src/nonedit.i"
 	@echo "... src/nonedit.s"

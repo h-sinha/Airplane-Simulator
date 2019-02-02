@@ -11,41 +11,37 @@ Hills::Hills(float x, float y, float z) {
     this->xlength = 1;
     this->ylength = 1;
     this->zlength = 2;
-    int n = 10;
+    int n = 20;
     GLfloat vertex_buffer_data[36*n];
-    GLfloat g_vertex_color_data[36*n];
-    int flg=0;
-    // for (int i = 0; i < 9*n; i+=3)
-    // {
-    //     g_vertex_color_data[i] = COLOR_NEON_GREEN.r;
-    //     g_vertex_color_data[i+1] = COLOR_NEON_GREEN.g;
-    //     g_vertex_color_data[i+2] = COLOR_NEON_GREEN.b;
-    // }
-    //   for (int i = 9*n; i < 18*n; i+=3)
-    // {
-    //       g_vertex_color_data[i] = COLOR_BROWN.r;
-    //       g_vertex_color_data[i+1] = COLOR_BROWN.g;
-    //       g_vertex_color_data[i+2] = COLOR_BROWN.b;
-    // }
-    // for (int i = 18*n; i < 36*n; i+=18)
-    // {
-    //       g_vertex_color_data[i] = COLOR_BROWN.r;
-    //       g_vertex_color_data[i+1] = COLOR_BROWN.g;
-    //       g_vertex_color_data[i+2] = COLOR_BROWN.b;
-    //       g_vertex_color_data[i+3] = COLOR_BROWN.r;
-    //       g_vertex_color_data[i+4] = COLOR_BROWN.g;
-    //       g_vertex_color_data[i+5] = COLOR_BROWN.b;
-    //        g_vertex_color_data[i+9] = COLOR_BROWN.r;
-    //       g_vertex_color_data[i+10] = COLOR_BROWN.g;
-    //       g_vertex_color_data[i+11] = COLOR_BROWN.b;
-    //       g_vertex_color_data[i+12] = COLOR_BROWN.r;
-    //       g_vertex_color_data[i+13] = COLOR_BROWN.g;
-    //       g_vertex_color_data[i+14] = COLOR_BROWN.b;
-    // }
-    float h = 0.5f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.5)));
-
-    makeFrustum(2,1,h,n, vertex_buffer_data);
-    this->object = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data, COLOR_BROWN, GL_FILL);
+    GLfloat vertex_buffer_data1[36*n];
+    GLfloat vertex_buffer_data2[36*n];
+    GLfloat vertex_buffer_data3[36*n];
+    GLfloat vertex_buffer_data4[36*n];
+    GLfloat color_buffer_data[36*n];
+    float h[5], r1[5], r2[5];
+    for (int i = 0; i < 5; ++i)
+    {
+        h[i] = 0.5f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.5)));
+        r2[i] = 0.5f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.5)));
+        r1[i] = r2[i] + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(3-r2[i])));
+    }
+    makeFrustum(0,0,0,r1[0],r2[0],h[0],n, vertex_buffer_data);
+    makeFrustum(0.5,0,0.5,r1[1],r2[1],h[1],n, vertex_buffer_data1);
+    makeFrustum(1,0,1,r1[2],r2[2],h[2],n, vertex_buffer_data2);
+    makeFrustum(1.5,0,1.5,r1[3],r2[3],h[3],n, vertex_buffer_data3);
+    makeFrustum(2,0,0.5,r1[4],r2[4],h[4],n, vertex_buffer_data4);
+    for (int i = 0; i <= 36*n; i+=3)
+    {
+     float cl = 0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0)));
+        color_buffer_data[i] = 0;
+        color_buffer_data[i+1] = cl;
+        color_buffer_data[i+2] = 0;
+    }
+    this->object = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data, color_buffer_data, GL_FILL);
+    this->object1 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data1, color_buffer_data, GL_FILL);
+    this->object2 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data2, color_buffer_data, GL_FILL);
+    this->object3 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data3, color_buffer_data, GL_FILL);
+    this->object4 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data4, color_buffer_data, GL_FILL);
 }
 
 void Hills::draw(glm::mat4 VP) {
@@ -60,6 +56,10 @@ void Hills::draw(glm::mat4 VP) {
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
+    draw3DObject(this->object1);
+    draw3DObject(this->object2);
+    draw3DObject(this->object3);
+    draw3DObject(this->object4);
 }
 
 void Hills::set_position(float x, float y, float z) {

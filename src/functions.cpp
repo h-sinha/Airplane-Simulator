@@ -107,34 +107,34 @@ void makePrism(float r, float h,int n, GLfloat vertex_buffer_data[]){
     	vertex_buffer_data[i] = vertex_buffer_data1[i];
     }
 }
-void makeFrustum(float r1, float r2, float h, int n, GLfloat vertex_buffer_data[]){
+void makeFrustum(float xoffset, float yoffset, float zoffset, float r1, float r2, float h, int n, GLfloat vertex_buffer_data[]){
 	GLfloat vertex_buffer_data1[9*n], vertex_buffer_data2[9*n];
 	int cur = 0;
 	for (int i = 1; i <= n; ++i)
      {
-        vertex_buffer_data1[cur] =   r1 * cos((2.0*PI*i)/n);
-        vertex_buffer_data1[cur+1] =  0.0f;
-        vertex_buffer_data1[cur+2] = r1 * sin((2.0*PI*i)/n);
-        vertex_buffer_data1[cur+3] =   r1 * cos((2.0*PI*(i+1))/n);
-        vertex_buffer_data1[cur+4] = 0.0f;
-        vertex_buffer_data1[cur+5] = r1 * sin((2.0*PI*(i+1))/n);
-        vertex_buffer_data1[cur+6] =  0.0f;
-        vertex_buffer_data1[cur+7] = 0.0f;
-        vertex_buffer_data1[cur+8] = 0.0f;
+        vertex_buffer_data1[cur] =  xoffset + r1 * cos((2.0*PI*i)/n);
+        vertex_buffer_data1[cur+1] =   yoffset + 0.0f;
+        vertex_buffer_data1[cur+2] =   zoffset + r1 * sin((2.0*PI*i)/n);
+        vertex_buffer_data1[cur+3] =  xoffset +   r1 * cos((2.0*PI*(i+1))/n);
+        vertex_buffer_data1[cur+4] =   yoffset + 0.0f;
+        vertex_buffer_data1[cur+5] =  zoffset + r1 * sin((2.0*PI*(i+1))/n);
+        vertex_buffer_data1[cur+6] =  xoffset +   0.0f;
+        vertex_buffer_data1[cur+7] =   yoffset + 0.0f;
+        vertex_buffer_data1[cur+8] =  zoffset + 0.0f;
         cur += 9;
      } 
      cur = 0;
      for (int i = 1; i <= n; ++i)
      {
-        vertex_buffer_data2[cur] =   h + r2 * cos((2.0*PI*i)/n);
-        vertex_buffer_data2[cur+1] =  h+0.0f;
-        vertex_buffer_data2[cur+2] = h + r2 * sin((2.0*PI*i)/n);
-        vertex_buffer_data2[cur+3] =  h+ r2 * cos((2.0*PI*(i+1))/n);
-        vertex_buffer_data2[cur+4] = h+0.0f;
-        vertex_buffer_data2[cur+5] = h + r2 * sin((2.0*PI*(i+1))/n);
-        vertex_buffer_data2[cur+6] = h + 0.0f;
-        vertex_buffer_data2[cur+7] = h;
-        vertex_buffer_data2[cur+8] = h + 0.0f;
+        vertex_buffer_data2[cur] =   xoffset +  h + r2 * cos((2.0*PI*i)/n);
+        vertex_buffer_data2[cur+1] =   yoffset +  h+0.0f;
+        vertex_buffer_data2[cur+2] =  zoffset + h + r2 * sin((2.0*PI*i)/n);
+        vertex_buffer_data2[cur+3] =  xoffset +  h+ r2 * cos((2.0*PI*(i+1))/n);
+        vertex_buffer_data2[cur+4] =   yoffset + h+0.0f;
+        vertex_buffer_data2[cur+5] =  zoffset + h + r2 * sin((2.0*PI*(i+1))/n);
+        vertex_buffer_data2[cur+6] = xoffset +  h + 0.0f;
+        vertex_buffer_data2[cur+7] =  yoffset +  h;
+        vertex_buffer_data2[cur+8] =  zoffset + h + 0.0f;
         cur += 9;
      } 
  	for (int i = 0; i < 9*n; ++i)

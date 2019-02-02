@@ -249,9 +249,33 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o.provides: CMakeFiles/airplane_s
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o.provides.build: CMakeFiles/airplane_simulator.dir/src/main.cpp.o
 
 
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: CMakeFiles/airplane_simulator.dir/flags.make
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/missile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/airplane_simulator.dir/src/missile.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/airplane_simulator.dir/src/missile.cpp.o -c /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.cpp
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/airplane_simulator.dir/src/missile.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.cpp > CMakeFiles/airplane_simulator.dir/src/missile.cpp.i
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/airplane_simulator.dir/src/missile.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.cpp -o CMakeFiles/airplane_simulator.dir/src/missile.cpp.s
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.requires:
+
+.PHONY : CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.requires
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.provides: CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.requires
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.provides.build
+.PHONY : CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.provides
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.provides.build: CMakeFiles/airplane_simulator.dir/src/missile.cpp.o
+
+
 CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o: CMakeFiles/airplane_simulator.dir/flags.make
 CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o: ../src/nonedit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o -c /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/nonedit.cpp
 
 CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o.provides.build: CMakeFiles/a
 
 CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o: CMakeFiles/airplane_simulator.dir/flags.make
 CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o: ../src/other_handlers.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o -c /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/other_handlers.cpp
 
 CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o.provides.build: CMake
 
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: CMakeFiles/airplane_simulator.dir/flags.make
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: ../src/timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/airplane_simulator.dir/src/timer.cpp.o -c /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.cpp
 
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.i: cmake_force
@@ -331,6 +355,7 @@ airplane_simulator_OBJECTS = \
 "CMakeFiles/airplane_simulator.dir/src/hills.cpp.o" \
 "CMakeFiles/airplane_simulator.dir/src/input.cpp.o" \
 "CMakeFiles/airplane_simulator.dir/src/main.cpp.o" \
+"CMakeFiles/airplane_simulator.dir/src/missile.cpp.o" \
 "CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o" \
 "CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o" \
 "CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
@@ -346,12 +371,13 @@ airplane_simulator: CMakeFiles/airplane_simulator.dir/src/functions.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/hills.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/input.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/main.cpp.o
+airplane_simulator: CMakeFiles/airplane_simulator.dir/src/missile.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/src/timer.cpp.o
 airplane_simulator: CMakeFiles/airplane_simulator.dir/build.make
 airplane_simulator: CMakeFiles/airplane_simulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable airplane_simulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable airplane_simulator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/airplane_simulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -367,6 +393,7 @@ CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/sr
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/hills.cpp.o.requires
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/input.cpp.o.requires
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/main.cpp.o.requires
+CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/missile.cpp.o.requires
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o.requires
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o.requires
 CMakeFiles/airplane_simulator.dir/requires: CMakeFiles/airplane_simulator.dir/src/timer.cpp.o.requires

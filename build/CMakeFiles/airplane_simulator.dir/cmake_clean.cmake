@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/input.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/main.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/missile.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"

@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "ball.h"
 #include "airplane.h"
+#include "missile.h"
 #include "hills.h"
 #include "background.h"
 
@@ -16,6 +17,7 @@ GLFWwindow *window;
 **************************/
 
 std::vector<Hills> Hillpos;
+std::vector<Missile> Missilepos;
 Ball ball1;
 Airplane airplane;
 Background background;
@@ -49,7 +51,7 @@ void draw() {
         targety = airplane.position.y;
         targetz = airplane.position.z;
         eyex = airplane.position.x ;
-        eyey = airplane.position.y + 3;
+        eyey = airplane.position.y + 2;
         eyez = airplane.position.z - 2;
     }
     // 1 plane_view
@@ -115,10 +117,20 @@ void draw() {
     glm::mat4 MVP;  // MVP = Projection * View * Model
 
     // Scene render
+   
+    for (int i = int(Missilepos.size()) - 1; i >= 0 ; --i)
+    {
+        if(Missilepos[i].position.y <= 0.3)
+        {
+            Missilepos.erase(Missilepos.begin() + i);
+            continue;
+        }
+    }
     ball1.draw(VP);
     airplane.draw(VP);
     background.draw(VP);
     for(auto &x:Hillpos)x.draw(VP);
+    for(auto &x:Missilepos)x.draw(VP);
 
 }
 
@@ -129,6 +141,11 @@ void tick_input(GLFWwindow *window) {
     int down = glfwGetKey(window, GLFW_KEY_DOWN);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int camera = glfwGetKey(window, GLFW_KEY_C);
+    int missile = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+    if(missile){
+        Missile missile = Missile(airplane.position.x,airplane.position.y,airplane.position.z+0.5, COLOR_BLACK);
+        Missilepos.push_back(missile);
+    }
     airplane.moving = 0;
     if (left) {
         airplane.position.x += 0.1;
@@ -157,7 +174,11 @@ void tick_input(GLFWwindow *window) {
         airplane.moving = 1;
         airplane.pitch -= 0.1;
     }
-    else airplane.pitch = min(airplane.pitch+0.1f,0.0f);
+    else
+    {
+        airplane.pitch = min(airplane.pitch+0.1f,0.0f);
+        airplane.position.y = max(airplane.position.y-0.1,0.0);
+    }
     if(camera && time(NULL) - cam_change_time > 1.0)
     {
         cam[current_camera] = 0;
@@ -172,6 +193,10 @@ void tick_elements() {
     airplane.tick();
     background.tick();
     for (auto&x:Hillpos)
+    {
+        x.tick();
+    }
+     for (auto&x:Missilepos)
     {
         x.tick();
     }
@@ -191,7 +216,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     Hills hills;
     for (int i = 0; i < 1000; ++i)
     {
-        float posx = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
         float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));
         hills = Hills(posx,0.0, posz);
         Hillpos.push_back(hills);
@@ -263,12 +288,12 @@ void reset_screen() {
     // float left   = screen_center_x - 4 / screen_zoom;
     // float right  = screen_center_x + 4 / screen_zoom;
     // Matrices.projection = glm::orth(left, right, bottom, top, 0.1f, 500.0f);
-     gluPerspective(1.0f, 1000.0/600.0,0.1f, 500.0f);
+     // gluPerspective(1.0f, 1000.0/600.0,0.1f, 500.0f);
     // glMatrixMode(GL_MODELVIEW);
     // glViewport(0, 0, width, height);
 //     float top    = 10 / screen_zoom;
 //     float bottom = 0;
 //     float left   = 0;
 //     float right  = 10 / screen_zoom;
-//     Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
+    Matrices.projection = glm::perspective(glm::radians(90.0f), width/height, 0.1f, 1000.0f);
 }

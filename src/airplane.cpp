@@ -10,7 +10,7 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->speed = 1;
     this->xlength = 4;
     this->ylength = 1;
-    this->zlength = 3;
+    this->zlength = 2.5;
     this->moving = 0;
     int n = 25;
     GLfloat vertex_buffer_data[9*n];
@@ -20,7 +20,7 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     GLfloat g_color_buffer_data[18*n];
     makePolygon(0,0,0,0.5,0.5,n,vertex_buffer_data);
     makePolygon(0,0,2,0.5,0.5,n,vertex_buffer_data1);
-    makeCone(0,0,2,0.5,1.0,n,vertex_buffer_data5);
+    makeCone(0,0,2,0.5,0.5,n,vertex_buffer_data5);
     int cur = 0;
     for (int i = 0; i < 9*n; i += 9)
     {
@@ -55,12 +55,12 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     }
     const GLfloat vertex_buffer_data3[]{
         -0.5f, 0.0f, 1.0f,
-        -2.0f, 0.0f, 0.5f,
+        -1.5f, 0.0f, 0.5f,
         -0.5f, 0.0f, 0.5f,
     };
      const GLfloat vertex_buffer_data4[]{
         0.5f, 0.0f, 1.0f,
-        2.0f, 0.0f, 0.5f,
+        1.5f, 0.0f, 0.5f,
         0.5f, 0.0f, 0.5f,
     };
     this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, COLOR_BLACK, GL_FILL);

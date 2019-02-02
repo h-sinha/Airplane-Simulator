@@ -36,7 +36,13 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/ball.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/hills.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/missile.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/timer.h
+
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/main.h
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/missile.cpp
+CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/missile.h
 
 CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o: ../src/main.h
 CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o: ../src/nonedit.cpp

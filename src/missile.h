@@ -1,13 +1,13 @@
 #include "main.h"
 
-#ifndef HILLS_H
-#define HILLS_H
+#ifndef MISSILE_H
+#define MISSILE_H
 
 
-class Hills {
+class Missile {
 public:
-    Hills() {}
-    Hills(float x, float y,float z);
+    Missile() {}
+    Missile(float x, float y,float z, color_t color);
     glm::vec3 position;
     float yaw, pitch, roll;
     void draw(glm::mat4 VP);
@@ -17,10 +17,6 @@ public:
     double xlength, ylength, zlength;
 private:
     VAO *object;
-    VAO *object1;
-    VAO *object2;
-    VAO *object3;
-    VAO *object4;
 };
 
 #endif // BALL_H
