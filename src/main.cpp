@@ -94,6 +94,7 @@ void draw() {
     }
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye (eyex, eyey, eyez );
+        // eye = eye*yrotate*xrotate*zrotate;
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
     glm::vec3 target (targetx, targety, targetz);
     // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
@@ -131,12 +132,18 @@ void tick_input(GLFWwindow *window) {
     airplane.moving = 0;
     if (left) {
         airplane.position.x += 0.1;
+        airplane.roll += 0.5;
         airplane.moving = 1;
     }
+    // else if(!right)airplane.roll = max(airplane.roll-0.5f,0.0f);
+
     if(right){
         airplane.position.x -= 0.1;
+        airplane.roll-=0.5;
         airplane.moving = 1;
     }
+    // else if(!left)airplane.roll = min(airplane.roll+0.5f,0.0f);
+
     if(up){
         airplane.position.z += 0.1;
         airplane.moving = 1;
@@ -148,7 +155,9 @@ void tick_input(GLFWwindow *window) {
     if(space){
         airplane.position.y += 0.1;
         airplane.moving = 1;
+        airplane.pitch -= 0.1;
     }
+    else airplane.pitch = min(airplane.pitch+0.1f,0.0f);
     if(camera && time(NULL) - cam_change_time > 1.0)
     {
         cam[current_camera] = 0;
@@ -177,7 +186,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Create the models
     cam[0] = 1;
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
-    airplane       = Airplane(6.0, 2.0,2, COLOR_RED);
+    airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
     Hills hills;
     for (int i = 0; i < 1000; ++i)
@@ -253,7 +262,7 @@ void reset_screen() {
     // float bottom = screen_center_y - 4 / screen_zoom;
     // float left   = screen_center_x - 4 / screen_zoom;
     // float right  = screen_center_x + 4 / screen_zoom;
-    // Matrices.projection = glm::perspective(left, right, bottom, top, 0.1f, 500.0f);
+    // Matrices.projection = glm::orth(left, right, bottom, top, 0.1f, 500.0f);
      gluPerspective(1.0f, 1000.0/600.0,0.1f, 500.0f);
     // glMatrixMode(GL_MODELVIEW);
     // glViewport(0, 0, width, height);

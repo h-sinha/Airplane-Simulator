@@ -91,7 +91,6 @@ void Airplane::draw(glm::mat4 VP) {
     draw3DObject(this->object2);
     draw3DObject(this->fan1);
     draw3DObject(this->fan2);
-    printf("%d\n",this->moving);
     draw3DObject(this->cockpit);
 
 }
