@@ -12,6 +12,9 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->ylength = 1;
     this->zlength = 2.5;
     this->moving = 0;
+    this->thex = 0;
+    this->they = 0;
+    this->thez = 0;
     int n = 25;
     GLfloat vertex_buffer_data[9*n];
     GLfloat vertex_buffer_data1[9*n];
@@ -80,7 +83,7 @@ void Airplane::draw(glm::mat4 VP) {
     glm::mat4 yrotate    = glm::rotate((float) (this->roll * M_PI / 180.0f), glm::vec3(0, 1, 0));
     // No need as coords centeBLACK at 0, 0, 0 of cube arouund which we waant to rotate
     // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
-    Matrices.model *= (translate * zrotate * xrotate * yrotate);
+    Matrices.model *= (translate *  yrotate * zrotate * xrotate);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     if(this->moving)
