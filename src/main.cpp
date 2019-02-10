@@ -55,7 +55,7 @@ void draw() {
         targety = airplane.position.y;
         targetz = airplane.position.z;
         eyex = airplane.position.x - 2*sin(airplane.they);
-        eyey = airplane.position.y + 2;
+        eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
         eyez = airplane.position.z - 2*cos(airplane.they);
     }
     // 1 plane_view
@@ -152,47 +152,56 @@ void tick_input(GLFWwindow *window) {
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int camera = glfwGetKey(window, GLFW_KEY_C);
     int missile = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-    if(missile){
-        Missile missile = Missile(airplane.position.x,airplane.position.y,airplane.position.z+0.5, COLOR_BLACK);
-        Missilepos.push_back(missile);
-    }
+   
     airplane.moving = 0;
     if (left) {
         // airplane.position.x += 0.1;
         airplane.roll += 0.01;
+        if (airplane.yaw>-0.5)
+        airplane.yaw -= 0.01;
         // for (auto &x: Hillpos)
             // x.draw();
         airplane.they += 0.01;
         airplane.moving = 1;
     }
-    // else if(!right)airplane.roll = max(airplane.roll-0.5f,0.0f);
+    // else if(!right)airplane.yaw = min(airplane.yaw+0.0001f,0.0f);
 
     if(right){
         // airplane.position.x -= 0.1;
+        if (airplane.yaw<0.5)
+        airplane.yaw += 0.01;
         airplane.roll-=0.01;
         // for (auto &x: Hillpos)x.roll += 0.5;
         airplane.they -= 0.01;
         airplane.moving = 1;
     }
-    // else if(!left)airplane.roll = min(airplane.roll+0.5f,0.0f);
+    // else if(!left)airplane.yaw = max(airplane.yaw-0.0001f,0.0f);
 
     if(up){
         // airplane.position.z += 0.1;
          airplane.position.z += 0.1*cos(-airplane.they);
         airplane.position.x -= 0.1*sin(-airplane.they);
+        airplane.position.y += 0.1*sin(-airplane.thex);
         airplane.moving = 1;
     }
     if(down){
        airplane.position.y -= 0.1;
+        airplane.position.y -= 0.1*sin(-airplane.thex);
         airplane.moving = 1;
-        // if(airplane.pitch < 0.6)
-        // airplane.pitch += 0.1;
+        if(airplane.pitch < 0.5)
+        {
+            airplane.pitch += 0.01;
+            airplane.thex += 0.01;
+        }
     }
     if(space){
         airplane.position.y += 0.1;
         airplane.moving = 1;
-        // if(airplane.pitch > -0.6)
-        // airplane.pitch -= 0.1;
+        if(airplane.pitch > -0.5)
+        {
+            airplane.pitch -= 0.01;
+            airplane.thex -= 0.01;
+        }
         // airplane.thex -= 0.1;
     }
     else
@@ -208,6 +217,10 @@ void tick_input(GLFWwindow *window) {
         current_camera%=5;
         cam[current_camera] = 1;
         cam_change_time = time(NULL);
+    }
+     if(missile){
+        Missile missile = Missile(airplane.position.x,airplane.position.y,airplane.position.z, COLOR_BLACK);
+        Missilepos.push_back(missile);
     }
 }
 
