@@ -10,7 +10,7 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->speed = 1;
     this->xlength = 4;
     this->ylength = 1;
-    this->zlength = 2.5;
+    this->zlength = 3;
     this->moving = 0;
     this->thex = 0;
     this->they = 0;
@@ -22,8 +22,8 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     GLfloat vertex_buffer_data5[9*n];
     GLfloat g_color_buffer_data[18*n];
     makePolygon(0,0,0,0.5,0.5,n,vertex_buffer_data);
-    makePolygon(0,0,2,0.5,0.5,n,vertex_buffer_data1);
-    makeCone(0,0,2,0.5,0.5,n,vertex_buffer_data5);
+    makePolygon(0,0,2.5,0.5,0.5,n,vertex_buffer_data1);
+    makeCone(0,0,2.5,0.5,0.5,n,vertex_buffer_data5);
     int cur = 0;
     for (int i = 0; i < 9*n; i += 9)
     {
@@ -78,9 +78,9 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
 void Airplane::draw(glm::mat4 VP) {
     Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
-    glm::mat4 zrotate    = glm::rotate((float) (this->yaw * M_PI / 180.0f), glm::vec3(0, 0, 1));
-    glm::mat4 xrotate    = glm::rotate((float) (this->pitch * M_PI / 180.0f), glm::vec3(1, 0, 0));
-    glm::mat4 yrotate    = glm::rotate((float) (this->roll * M_PI / 180.0f), glm::vec3(0, 1, 0));
+    glm::mat4 zrotate    = glm::rotate((float) (this->yaw), glm::vec3(0, 0, 1));
+    glm::mat4 xrotate    = glm::rotate((float) (this->pitch), glm::vec3(1, 0, 0));
+    glm::mat4 yrotate    = glm::rotate((float) (this->roll), glm::vec3(0, 1, 0));
     // No need as coords centeBLACK at 0, 0, 0 of cube arouund which we waant to rotate
     // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
     Matrices.model *= (translate *  yrotate * zrotate * xrotate);
@@ -106,5 +106,16 @@ void Airplane::tick() {
     // this->rotation += speed;
     // this->position.x -= speed;
     // this->position.y -= speed;
+}
+
+bounding_box_t Airplane::BoundingBox() {
+    bounding_box_t a;
+    a.xlength = this->xlength;
+    a.ylength = this->ylength;
+    a.zlength = this->zlength;
+    a.x = this->position.x;
+    a.y = this->position.y;
+    a.z = this->position.z;
+    return a;
 }
 

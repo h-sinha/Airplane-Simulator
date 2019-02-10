@@ -126,13 +126,13 @@ void makeFrustum(float xoffset, float yoffset, float zoffset, float r1, float r2
      cur = 0;
      for (int i = 1; i <= n; ++i)
      {
-        vertex_buffer_data2[cur] =   xoffset +  h + r2 * cos((2.0*PI*i)/n);
+        vertex_buffer_data2[cur] =   xoffset +  r2 * cos((2.0*PI*i)/n);
         vertex_buffer_data2[cur+1] =   yoffset +  h+0.0f;
         vertex_buffer_data2[cur+2] =  zoffset + h + r2 * sin((2.0*PI*i)/n);
-        vertex_buffer_data2[cur+3] =  xoffset +  h+ r2 * cos((2.0*PI*(i+1))/n);
+        vertex_buffer_data2[cur+3] =  xoffset + r2 * cos((2.0*PI*(i+1))/n);
         vertex_buffer_data2[cur+4] =   yoffset + h+0.0f;
         vertex_buffer_data2[cur+5] =  zoffset + h + r2 * sin((2.0*PI*(i+1))/n);
-        vertex_buffer_data2[cur+6] = xoffset +  h + 0.0f;
+        vertex_buffer_data2[cur+6] = xoffset +  0.0f;
         vertex_buffer_data2[cur+7] =  yoffset +  h;
         vertex_buffer_data2[cur+8] =  zoffset + h + 0.0f;
         cur += 9;

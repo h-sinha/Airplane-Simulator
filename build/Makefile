@@ -204,6 +204,33 @@ src/ball.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
 
+src/checkpoint.o: src/checkpoint.cpp.o
+
+.PHONY : src/checkpoint.o
+
+# target to build an object file
+src/checkpoint.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o
+.PHONY : src/checkpoint.cpp.o
+
+src/checkpoint.i: src/checkpoint.cpp.i
+
+.PHONY : src/checkpoint.i
+
+# target to preprocess a source file
+src/checkpoint.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.i
+.PHONY : src/checkpoint.cpp.i
+
+src/checkpoint.s: src/checkpoint.cpp.s
+
+.PHONY : src/checkpoint.s
+
+# target to generate assembly for a file
+src/checkpoint.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.s
+.PHONY : src/checkpoint.cpp.s
+
 src/color.o: src/color.cpp.o
 
 .PHONY : src/color.o
@@ -230,6 +257,33 @@ src/color.s: src/color.cpp.s
 src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
+
+src/dashboard.o: src/dashboard.cpp.o
+
+.PHONY : src/dashboard.o
+
+# target to build an object file
+src/dashboard.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o
+.PHONY : src/dashboard.cpp.o
+
+src/dashboard.i: src/dashboard.cpp.i
+
+.PHONY : src/dashboard.i
+
+# target to preprocess a source file
+src/dashboard.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.i
+.PHONY : src/dashboard.cpp.i
+
+src/dashboard.s: src/dashboard.cpp.s
+
+.PHONY : src/dashboard.s
+
+# target to generate assembly for a file
+src/dashboard.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.s
+.PHONY : src/dashboard.cpp.s
 
 src/functions.o: src/functions.cpp.o
 
@@ -465,9 +519,15 @@ help:
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
+	@echo "... src/checkpoint.o"
+	@echo "... src/checkpoint.i"
+	@echo "... src/checkpoint.s"
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/dashboard.o"
+	@echo "... src/dashboard.i"
+	@echo "... src/dashboard.s"
 	@echo "... src/functions.o"
 	@echo "... src/functions.i"
 	@echo "... src/functions.s"

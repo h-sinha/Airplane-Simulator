@@ -78,3 +78,13 @@ void Ball::tick() {
     // this->position.y -= speed;
 }
 
+bounding_box_t Ball::BoundingBox() {
+    bounding_box_t a;
+    a.xlength = this->xlength;
+    a.ylength = this->ylength;
+    a.zlength = this->zlength;
+    a.x = this->position.x;
+    a.y = this->position.y;
+    a.z = this->position.z;
+    return a;
+}

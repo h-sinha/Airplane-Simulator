@@ -1,23 +1,27 @@
 #include "main.h"
 
-#ifndef BALL_H
-#define BALL_H
+#ifndef CHECKPOINT_H
+#define CHECKPOINT_H
 
 
-class Ball {
+class Checkpoint {
 public:
-    Ball() {}
-    Ball(float x, float y,float z, color_t color);
+    Checkpoint() {}
+    Checkpoint(float x, float y,float z);
     glm::vec3 position;
     float yaw, pitch, roll;
-    bounding_box_t BoundingBox();
     void draw(glm::mat4 VP);
+    bounding_box_t BoundingBox();
     void set_position(float x, float y, float z);
     void tick();
     double speed;
     double xlength, ylength, zlength;
 private:
     VAO *object;
+    VAO *object1;
+    VAO *object2;
+    VAO *object3;
+    VAO *object4;
 };
 
 #endif // BALL_H

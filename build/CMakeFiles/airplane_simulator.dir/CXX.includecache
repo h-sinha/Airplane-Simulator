@@ -40,7 +40,31 @@ functions.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.cpp
+checkpoint.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/color.cpp
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp
+dashboard.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
@@ -95,10 +119,14 @@ ball.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/ball.h
 airplane.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.h
+dashboard.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
 missile.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.h
 hills.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
+checkpoint.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
 

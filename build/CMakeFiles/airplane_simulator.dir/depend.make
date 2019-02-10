@@ -15,8 +15,18 @@ CMakeFiles/airplane_simulator.dir/src/ball.cpp.o: ../src/ball.h
 CMakeFiles/airplane_simulator.dir/src/ball.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/ball.cpp.o: ../src/main.h
 
+CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o: ../src/checkpoint.cpp
+CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o: ../src/checkpoint.h
+CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o: ../src/main.h
+
 CMakeFiles/airplane_simulator.dir/src/color.cpp.o: ../src/color.cpp
 CMakeFiles/airplane_simulator.dir/src/color.cpp.o: ../src/main.h
+
+CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.cpp
+CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.h
+CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/main.h
 
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o: ../src/functions.cpp
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o: ../src/functions.h
@@ -33,6 +43,8 @@ CMakeFiles/airplane_simulator.dir/src/input.cpp.o: ../src/main.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/airplane.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/background.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/ball.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/checkpoint.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/dashboard.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/hills.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.h

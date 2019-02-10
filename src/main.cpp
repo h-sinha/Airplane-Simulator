@@ -2,8 +2,10 @@
 #include "timer.h"
 #include "ball.h"
 #include "airplane.h"
+#include "dashboard.h"
 #include "missile.h"
 #include "hills.h"
+#include "checkpoint.h"
 #include "background.h"
 
 using namespace std;
@@ -20,13 +22,15 @@ std::vector<Hills> Hillpos;
 std::vector<Missile> Missilepos;
 Ball ball1;
 Airplane airplane;
+Dashboard dashboard;
 Background background;
+Checkpoint checkpoint;
 
-float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
+float screen_zoom = 2.0, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0.0;
-float eyex, eyey, eyez, targetx, targety, targetz;
+float eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz;
 bool cam[5];
-int current_camera = 0;
+int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 time_t cam_change_time = 0.0;
 
@@ -60,7 +64,7 @@ void draw() {
          targetx = airplane.position.x;
         targety = 0.0f;
         targetz = 1000.0f;
-        eyex = airplane.position.x ;
+       eyex = airplane.position.x ;
         eyey = airplane.position.y ;
         eyez = airplane.position.z + 3;
     }
@@ -126,12 +130,18 @@ void draw() {
             continue;
         }
     }
-    ball1.draw(VP);
+    // ball1.draw(VP);
     airplane.draw(VP);
+    checkpoint.draw(VP);
     background.draw(VP);
-    for(auto &x:Hillpos)x.draw(VP);
+    for(auto &x:Hillpos)
+    {
+        x.draw(VP);
+        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+            gameOver = 1;
+    }
     for(auto &x:Missilepos)x.draw(VP);
-
+    // dashboard.draw(VP);
 }
 
 void tick_input(GLFWwindow *window) {
@@ -149,7 +159,7 @@ void tick_input(GLFWwindow *window) {
     airplane.moving = 0;
     if (left) {
         // airplane.position.x += 0.1;
-        airplane.roll += 0.5;
+        airplane.roll += 0.01;
         // for (auto &x: Hillpos)
             // x.draw();
         airplane.they += 0.01;
@@ -159,7 +169,7 @@ void tick_input(GLFWwindow *window) {
 
     if(right){
         // airplane.position.x -= 0.1;
-        airplane.roll-=0.5;
+        airplane.roll-=0.01;
         // for (auto &x: Hillpos)x.roll += 0.5;
         airplane.they -= 0.01;
         airplane.moving = 1;
@@ -173,21 +183,23 @@ void tick_input(GLFWwindow *window) {
         airplane.moving = 1;
     }
     if(down){
-        airplane.position.z -= 0.1*cos(-airplane.they);
-        airplane.position.x += 0.1*sin(-airplane.they);
+       airplane.position.y -= 0.1;
         airplane.moving = 1;
+        // if(airplane.pitch < 0.6)
+        // airplane.pitch += 0.1;
     }
     if(space){
         airplane.position.y += 0.1;
         airplane.moving = 1;
-        airplane.pitch -= 0.1;
+        // if(airplane.pitch > -0.6)
+        // airplane.pitch -= 0.1;
         // airplane.thex -= 0.1;
     }
     else
     {
-        airplane.pitch = min(airplane.pitch+0.1f,0.0f);
+        // airplane.pitch = min(airplane.pitch+0.1f,0.0f);
         // airplane.thex = min(airplane.thex+0.1f,0.0f);
-        airplane.position.y = max(airplane.position.y-0.1,0.0);
+        // airplane.position.y = max(airplane.position.y-0.1,0.0);
     }
     if(camera && time(NULL) - cam_change_time > 1.0)
     {
@@ -201,7 +213,9 @@ void tick_input(GLFWwindow *window) {
 
 void tick_elements() {
     airplane.tick();
+    dashboard.tick();
     background.tick();
+    checkpoint.tick();
     for (auto&x:Hillpos)
     {
         x.tick();
@@ -222,7 +236,9 @@ void initGL(GLFWwindow *window, int width, int height) {
     cam[0] = 1;
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
     airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
+    dashboard       = Dashboard(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
+    checkpoint = Checkpoint(0,0,0);
     Hills hills;
     for (int i = 0; i < 1000; ++i)
     {
@@ -286,24 +302,26 @@ int main(int argc, char **argv) {
 }
 
 bool detect_collision(bounding_box_t a, bounding_box_t b) {
-    return (abs(a.x - b.x) * 2 < (a.width + b.width)) &&
-           (abs(a.y - b.y) * 2 < (a.height + b.height));
+    return (abs(a.x - b.x) * 2 < (a.xlength + b.xlength)) &&
+           (abs(a.y - b.y) * 2 < (a.ylength + b.ylength)) &&
+           (abs(a.z - b.z) * 2 < (a.zlength + b.zlength));
+    // return abs(a.y - b.y) <= airplane.ylength;
 }
 
 void reset_screen() {
-    float width = 1000;
+    float width = 800;
     float height = 600;
-    // float top    = screen_center_y + 4 / screen_zoom;
-    // float bottom = screen_center_y - 4 / screen_zoom;
-    // float left   = screen_center_x - 4 / screen_zoom;
-    // float right  = screen_center_x + 4 / screen_zoom;
-    // Matrices.projection = glm::orth(left, right, bottom, top, 0.1f, 500.0f);
-     gluPerspective(1.0f, 1000.0/600.0,0.1f, 500.0f);
+    float top    = screen_center_y + 4 / screen_zoom;
+    float bottom = screen_center_y - 4 / screen_zoom;
+    float left   = screen_center_x - 4 / screen_zoom;
+    float right  = screen_center_x + 4 / screen_zoom;
+    // Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
+     // gluPerspective(1.0f, width/height, 0.1f, 500.0f);
     // glMatrixMode(GL_MODELVIEW);
     // glViewport(0, 0, width, height);
 //     float top    = 10 / screen_zoom;
 //     float bottom = 0;
 //     float left   = 0;
 //     float right  = 10 / screen_zoom;
-    // Matrices.projection = glm::perspective(1.0f, width/height, 0.0f, 1000.0f);
+    Matrices.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);
 }

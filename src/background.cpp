@@ -15,7 +15,6 @@ Background::Background(float x, float y,float z, color_t color) {
         -1000.0,0.0, -1000.0,
         -1000.0,0.0, 1000.0
     };
-
     this->object = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data, color, GL_FILL);
 }
 
@@ -40,4 +39,3 @@ void Background::tick() {
     // this->position.x -= speed;
     // this->position.y -= speed;
 }
-
