@@ -12,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/missile.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
   "airplane_simulator.pdb"
   "airplane_simulator"

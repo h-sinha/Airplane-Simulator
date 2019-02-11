@@ -129,6 +129,8 @@ checkpoint.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
+parachute.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 iostream
@@ -203,6 +205,18 @@ glm/gtx/transform.hpp
 -
 glm/gtc/matrix_transform.hpp
 -
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.cpp
+parachute.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 

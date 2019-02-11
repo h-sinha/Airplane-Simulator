@@ -7,6 +7,7 @@
 #include "hills.h"
 #include "checkpoint.h"
 #include "background.h"
+#include "parachute.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ Airplane airplane;
 Dashboard dashboard;
 Background background;
 Checkpoint checkpoint;
+std::vector<Parachute> ParachutePos;
 
 float screen_zoom = 2.0, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0.0;
@@ -32,6 +34,7 @@ float eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz;
 bool cam[5];
 int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
+int co = 0;
 time_t cam_change_time = 0.0;
 
 /* Render the scene with openGL */
@@ -130,10 +133,24 @@ void draw() {
             continue;
         }
     }
+    for (auto &x:Missilepos)
+    {
+        for (auto &y:ParachutePos)
+        {
+            if(detect_collision(x.BoundingBox(), y.BoundingBox()))
+            {
+                y.position.y = -100.0;
+            }
+        }
+    }
     // ball1.draw(VP);
     airplane.draw(VP);
-    checkpoint.draw(VP);
+    // checkpoint.draw(VP);
     background.draw(VP);
+    for (auto &x:ParachutePos)
+    {
+        x.draw(VP);
+    }
     for(auto &x:Hillpos)
     {
         x.draw(VP);
@@ -229,6 +246,10 @@ void tick_elements() {
     dashboard.tick();
     background.tick();
     checkpoint.tick();
+    for (auto &x:ParachutePos)
+    {
+        x.tick();
+    }
     for (auto&x:Hillpos)
     {
         x.tick();
@@ -261,6 +282,12 @@ void initGL(GLFWwindow *window, int width, int height) {
         Hillpos.push_back(hills);
     }
 
+    Parachute parachute;
+    for (int i = 0; i < 20; ++i)
+    {
+        parachute = Parachute(0,0,0);
+        ParachutePos.push_back(parachute);
+    }
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform

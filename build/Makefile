@@ -474,6 +474,33 @@ src/other_handlers.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.s
 .PHONY : src/other_handlers.cpp.s
 
+src/parachute.o: src/parachute.cpp.o
+
+.PHONY : src/parachute.o
+
+# target to build an object file
+src/parachute.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o
+.PHONY : src/parachute.cpp.o
+
+src/parachute.i: src/parachute.cpp.i
+
+.PHONY : src/parachute.i
+
+# target to preprocess a source file
+src/parachute.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/parachute.cpp.i
+.PHONY : src/parachute.cpp.i
+
+src/parachute.s: src/parachute.cpp.s
+
+.PHONY : src/parachute.s
+
+# target to generate assembly for a file
+src/parachute.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/parachute.cpp.s
+.PHONY : src/parachute.cpp.s
+
 src/timer.o: src/timer.cpp.o
 
 .PHONY : src/timer.o
@@ -549,6 +576,9 @@ help:
 	@echo "... src/other_handlers.o"
 	@echo "... src/other_handlers.i"
 	@echo "... src/other_handlers.s"
+	@echo "... src/parachute.o"
+	@echo "... src/parachute.i"
+	@echo "... src/parachute.s"
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"

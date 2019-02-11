@@ -14,7 +14,7 @@ Missile::Missile(float x, float y, float z,color_t color) {
     this->speed = 0.05f;
     int n = 25;
     GLfloat vertex_buffer_data[9*n];
-    makeCone(0,0,2,0.5,1,n,vertex_buffer_data);
+    makeCone(0,0,2,3,0.5,1,n,vertex_buffer_data);
     this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, COLOR_BLACK, GL_FILL);
 }
 

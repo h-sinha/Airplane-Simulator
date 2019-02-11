@@ -23,7 +23,8 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     GLfloat g_color_buffer_data[18*n];
     makePolygon(0,0,0,0.5,0.5,n,vertex_buffer_data);
     makePolygon(0,0,2.5,0.5,0.5,n,vertex_buffer_data1);
-    makeCone(0,0,2.5,0.5,0.5,n,vertex_buffer_data5);
+    makeCone(0,0,2.5,3,0.5,0.5,n,vertex_buffer_data5);
+
     int cur = 0;
     for (int i = 0; i < 9*n; i += 9)
     {
