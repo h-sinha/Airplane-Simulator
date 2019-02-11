@@ -2,7 +2,7 @@
 #include "main.h"
 #include "functions.h"
 
-Missile::Missile(float x, float y, float z,color_t color) {
+Missile::Missile(float x, float y, float z, float anglex, float angley, color_t color) {
     this->position = glm::vec3(x, y, z);
     this->yaw = 0;
     this->pitch = 0;
@@ -12,10 +12,12 @@ Missile::Missile(float x, float y, float z,color_t color) {
     this->ylength = 0.5;
     this->zlength = 0.5;
     this->speed = 0.05f;
+    this->thex = anglex;
+    this->they = angley;
     int n = 25;
     GLfloat vertex_buffer_data[9*n];
     makeCone(0,0,2,3,0.5,1,n,vertex_buffer_data);
-    this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, COLOR_BLACK, GL_FILL);
+    this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, color, GL_FILL);
 }
 
 void Missile::draw(glm::mat4 VP) {
@@ -38,8 +40,12 @@ void Missile::set_position(float x, float y, float z) {
 
 void Missile::tick() {
     // this->rotation += speed;
-    this->position.z += 0.5;
-    this->position.y -= this->speed;
+    // this->position.z += 0.5;
+    // this->position.y -= this->speed;
+    this->position.z += 0.5*cos(this->they);
+    // this->position.z += 0.5*cos(this->they)*cos(this->thex);
+    this->position.x += 0.5*sin(this->they);
+    // this->position.y -= 0.5*sin(this->thex);
 }
 
 bounding_box_t Missile::BoundingBox() {

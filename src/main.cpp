@@ -145,7 +145,7 @@ void draw() {
     }
     // ball1.draw(VP);
     airplane.draw(VP);
-    // checkpoint.draw(VP);
+    checkpoint.draw(VP);
     background.draw(VP);
     for (auto &x:ParachutePos)
     {
@@ -236,7 +236,14 @@ void tick_input(GLFWwindow *window) {
         cam_change_time = time(NULL);
     }
      if(missile){
-        Missile missile = Missile(airplane.position.x,airplane.position.y,airplane.position.z, COLOR_BLACK);
+        float posx, posy, posz;
+        posx = airplane.position.x;
+        posy = airplane.position.y;
+        posz = airplane.position.z;
+        // posx = airplane.position.x - 0.2*sin(airplane.they);
+        // posy = airplane.position.y + 0.2*sin(airplane.thex);
+        // posz = airplane.position.z - 0.2*cos(airplane.they);
+        Missile missile = Missile(posx, posy, posz, airplane.thex, airplane.they, COLOR_NEON_GREEN);
         Missilepos.push_back(missile);
     }
 }
@@ -274,7 +281,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     background  = Background(0, 0,0, COLOR_WATER);
     checkpoint = Checkpoint(0,0,0);
     Hills hills;
-    for (int i = 0; i < 1000; ++i)
+    for (int i = 0; i < 100; ++i)
     {
         float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
         float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));

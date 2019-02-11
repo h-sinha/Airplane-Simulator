@@ -7,17 +7,17 @@ Parachute::Parachute(float x, float y, float z) {
     this->pitch = 0;
     this->roll = 0;
     this->speed = 0.1;
-    this->xlength = 0.5;
-    this->ylength = 2.25;
-    this->zlength = 0.5;
+    this->xlength = 2.5;
+    this->ylength = 2.5;
+    this->zlength = 2.5;
     int n = 20;
     GLfloat vertex_buffer_data[36*n];
     GLfloat vertex_buffer_data1[36*n];
     GLfloat vertex_buffer_data2[36*n];
     GLfloat color_buffer_data2[36*n];
     GLfloat color_buffer_data[36*n];
-    makeCube(0.25,0.25,0.25,vertex_buffer_data);
-    makeCone(0.0,0.25,0.0,2, 0.25, 0.25, n,vertex_buffer_data2);
+    makeCube(1.25,1.25,1.25,vertex_buffer_data);
+    makeCone(0.0,1.25,0.0,2, 1.25, 1.25, n,vertex_buffer_data2);
     int cur = 0;
      for (int i = 0; i < n; ++i)
      {
@@ -40,14 +40,14 @@ Parachute::Parachute(float x, float y, float z) {
             }
         }
      } 
-    float r = 0.25;
+    float r = 1.25;
      for (int i = 1; i <= n; ++i)
      {
         vertex_buffer_data1[cur] =  r * cos((2.0*PI*i)/n);
-        vertex_buffer_data1[cur+1] = 0.25;
+        vertex_buffer_data1[cur+1] = 1.25;
         vertex_buffer_data1[cur+2] = r * sin((2.0*PI*i)/n);
         vertex_buffer_data1[cur+3] =  0.0;
-        vertex_buffer_data1[cur+4] = 0.125;
+        vertex_buffer_data1[cur+4] = 0.6;
         vertex_buffer_data1[cur+5] = 0.0;
         cur += 6;
      } 
