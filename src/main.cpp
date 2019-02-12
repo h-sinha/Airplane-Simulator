@@ -8,10 +8,11 @@
 #include "checkpoint.h"
 #include "background.h"
 #include "parachute.h"
+#include "functions.h"
 
 using namespace std;
 
-GLMatrices Matrices;
+GLMatrices Matrices, MatricesScore;
 GLuint     programID;
 GLFWwindow *window;
 
@@ -21,9 +22,9 @@ GLFWwindow *window;
 
 std::vector<Hills> Hillpos;
 std::vector<Missile> Missilepos;
+std::vector<Dashboard> DashboardPos;
 Ball ball1;
 Airplane airplane;
-Dashboard dashboard;
 Background background;
 Checkpoint checkpoint;
 std::vector<Parachute> ParachutePos;
@@ -34,8 +35,9 @@ float eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz;
 bool cam[5];
 int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
-int co = 0;
+int score = 0;
 time_t cam_change_time = 0.0;
+string ScoreBoard = "SCORE-";
 
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
@@ -108,20 +110,28 @@ void draw() {
     glm::vec3 target (targetx, targety, targetz);
     // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
     glm::vec3 up (0, 1, 0);
+     glm::vec3 eyeScore (0,0,1);
+    // Target - Where is the camera looking at.  Don't change unless you are sure!!
+    glm::vec3 targetScore (0, 0, 0);
+    // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
+    glm::vec3 upScore (0, 1, 0);
 
     // Compute Camera matrix (view)
     Matrices.view = glm::lookAt( eye, target, up ); // Rotating Camera for 3D
+    MatricesScore.view = glm::lookAt( eyeScore, targetScore, upScore ); // Rotating Camera for 3D
     // Don't change unless you are sure!!
     // Matrices.view = glm::lookAt(glm::vec3(0, 0, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)); // Fixed camera for 2D (ortho) in XY plane
 
     // Compute ViewProject matrix as view/camera might not be changed for this frame (basic scenario)
     // Don't change unless you are sure!!
     glm::mat4 VP = Matrices.projection * Matrices.view;
+    glm::mat4 VPScore = MatricesScore.projection * MatricesScore.view;
 
     // Send our transformation to the currently bound shader, in the "MVP" uniform
     // For each model you render, since the MVP will be different (at least the M part)
     // Don't change unless you are sure!!
     glm::mat4 MVP;  // MVP = Projection * View * Model
+    glm::mat4 MVPScore;  // MVP = Projection * View * Model
 
     // Scene render
    
@@ -158,7 +168,44 @@ void draw() {
             gameOver = 1;
     }
     for(auto &x:Missilepos)x.draw(VP);
-    // dashboard.draw(VP);
+    string digit;
+    int aux_score = score;
+    // cout<<sevenSegment(ScoreBoard[0])<<endl;
+
+    for (int i = 0; i < int(DashboardPos.size())/3; ++i)
+    {
+        if(i < 42)
+        {
+            if(i%7 == 0)digit = sevenSegment(ScoreBoard[i/7]);
+            if(digit[i%7] == '1')
+            {
+                DashboardPos[i].draw(VPScore);
+            }
+        }
+        else
+        {
+            if(i == 42)
+            {
+                digit = sevenSegment(aux_score/100 + 48);
+                aux_score%=100;
+            }
+            else if(i == 49)
+            {
+                digit = sevenSegment(aux_score/10 + 48);
+                aux_score%=10;
+            }
+            else if(i == 56)
+            {
+                digit = sevenSegment(aux_score + 48);
+                aux_score = 0;
+            }
+            if(digit[(i-42)%7] == '1')
+            {
+                DashboardPos[i].draw(VPScore);
+            }
+        }
+    }
+
 }
 
 void tick_input(GLFWwindow *window) {
@@ -250,7 +297,6 @@ void tick_input(GLFWwindow *window) {
 
 void tick_elements() {
     airplane.tick();
-    dashboard.tick();
     background.tick();
     checkpoint.tick();
     for (auto &x:ParachutePos)
@@ -277,7 +323,6 @@ void initGL(GLFWwindow *window, int width, int height) {
     cam[0] = 1;
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
     airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
-    dashboard       = Dashboard(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
     checkpoint = Checkpoint(0,0,0);
     Hills hills;
@@ -295,10 +340,35 @@ void initGL(GLFWwindow *window, int width, int height) {
         parachute = Parachute(0,0,0);
         ParachutePos.push_back(parachute);
     }
+    float current = 0.0,currenty = -0.9, diff = 0.02, xx = 0.02, yy = 0.08;
+    Dashboard dashboard;
+    for(int j = 0; j< 3; ++j)
+    {
+        current = 0.0,currenty += 0.3, diff = 0.02, xx = 0.02, yy = 0.08;
+        for(int i =0 ;i<9;++i)
+        {   
+            dashboard = Dashboard(current,currenty + 3.94f - xx - yy - diff, xx, yy);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current + diff,currenty + 3.94f - xx, yy, xx);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current + xx + yy ,currenty + 3.94f - xx - yy - diff, xx, yy);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current + xx + yy,currenty + 3.94f - xx - 2*yy - 2*diff, xx, yy);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current+ diff,currenty + 3.94f - 2*yy - xx -3*diff, yy, xx);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 2*diff, xx, yy);
+            DashboardPos.push_back(dashboard);
+            dashboard = Dashboard(current + diff,currenty +  3.94f - xx - yy - 2*diff, yy, xx);
+            DashboardPos.push_back(dashboard);
+            current += (2*xx + yy + diff);
+        }
+    }
     // Create and compile our GLSL program from the shaders
     programID = LoadShaders("Sample_GL.vert", "Sample_GL.frag");
     // Get a handle for our "MVP" uniform
     Matrices.MatrixID = glGetUniformLocation(programID, "MVP");
+    MatricesScore.MatrixID = glGetUniformLocation(programID, "MVPScore");
 
 
     reshapeWindow (window, width, height);
@@ -371,4 +441,5 @@ void reset_screen() {
 //     float left   = 0;
 //     float right  = 10 / screen_zoom;
     Matrices.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);
+    MatricesScore.projection = glm::ortho(0.0f, 4.0f, 4.0f, 0.0f, 0.1f, 500.0f);
 }

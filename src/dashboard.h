@@ -7,16 +7,13 @@
 class Dashboard {
 public:
     Dashboard() {}
-    Dashboard(float x, float y,float z, color_t color);
+    Dashboard(float x, float y, float xx, float yy);
     glm::vec3 position;
     void draw(glm::mat4 VP);
-    void set_position(float x, float y, float z);
-    void tick();
+    void set_position(float x, float y);
     double speed;
 private:
-    VAO *object;
-    VAO *object1;
-    VAO *object2;
+    VAO *line;
 };
 
-#endif // BALL_H
+#endif // PLAYER_H

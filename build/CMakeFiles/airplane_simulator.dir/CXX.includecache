@@ -61,8 +61,6 @@ dashboard.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
-functions.h
-/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
 main.h
@@ -131,6 +129,8 @@ background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
 parachute.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 iostream

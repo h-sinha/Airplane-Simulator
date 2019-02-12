@@ -26,7 +26,6 @@ CMakeFiles/airplane_simulator.dir/src/color.cpp.o
 CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
- /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.cpp
@@ -46,6 +45,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/ball.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
