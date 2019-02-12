@@ -82,7 +82,6 @@ void reset_screen();
 
 // ---- Colors ----
 extern const color_t COLOR_WATER;
-
 extern const color_t COLOR_RED;
 extern const color_t COLOR_DARK_RED;
 extern const color_t COLOR_GREEN;
@@ -101,7 +100,12 @@ extern const color_t COLOR_LIGHT_SLATE_GREY;
 extern const color_t COLOR_NEON_GREEN;
 extern const color_t COLOR_COIN;
 extern const color_t COLOR_BALL;
+extern const color_t COLOR_FIRE_BRICK;
 extern const color_t COLOR_test;
+#include "main.h"
+
+
+
 
 
 #endif

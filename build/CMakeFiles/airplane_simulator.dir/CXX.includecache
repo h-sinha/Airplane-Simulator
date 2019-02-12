@@ -151,6 +151,8 @@ glm/gtx/transform.hpp
 -
 glm/gtc/matrix_transform.hpp
 -
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.cpp
 missile.h

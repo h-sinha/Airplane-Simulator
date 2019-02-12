@@ -221,7 +221,15 @@ std::string sevenSegment(char s)
             return "1100010";
         case 'E':
             return "1100111";
+        case 'A':
+            return "1111011";
+        case 'L':
+            return "1000110";
+        case 'F':
+            return "1100011";
         case '-':
             return "0000001";
+        default:
+            return "0000000";
     }
 }

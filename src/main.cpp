@@ -37,7 +37,7 @@ int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 int score = 0;
 time_t cam_change_time = 0.0;
-string ScoreBoard = "SCORE-";
+string ScoreBoard = "SCORE-", Altitude = "A-", Fuel = "F-";
 
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
@@ -170,9 +170,8 @@ void draw() {
     for(auto &x:Missilepos)x.draw(VP);
     string digit;
     int aux_score = score;
-    // cout<<sevenSegment(ScoreBoard[0])<<endl;
 
-    for (int i = 0; i < int(DashboardPos.size())/3; ++i)
+    for (int i = 0; i < 63 ; ++i)
     {
         if(i < 42)
         {
@@ -204,6 +203,33 @@ void draw() {
                 DashboardPos[i].draw(VPScore);
             }
         }
+    }
+    for (int i = 63; i < 89; ++i)
+    {
+        if(i < 77)
+        {
+            if(i%7 == 0)digit = sevenSegment(Altitude[(i-63)/7]);
+            if(digit[i%7] == '1')
+            {
+                DashboardPos[i].draw(VPScore);
+            }
+        }
+        else
+            DashboardPos[i].draw(VPScore);
+    }
+    for (int i = 89; i < int(DashboardPos.size()); ++i)
+    {
+        if(i < 103)
+        {
+            if(i == 89)digit = sevenSegment('F');
+            if(i == 95)digit = sevenSegment('-');
+            if(digit[(i+2)%7] == '1')
+            {
+                DashboardPos[i].draw(VPScore);
+            }
+        }
+        else
+            DashboardPos[i].draw(VPScore);
     }
 
 }
@@ -342,26 +368,43 @@ void initGL(GLFWwindow *window, int width, int height) {
     }
     float current = 0.0,currenty = -0.9, diff = 0.02, xx = 0.02, yy = 0.08;
     Dashboard dashboard;
+    int limit;
     for(int j = 0; j< 3; ++j)
     {
         current = 0.0,currenty += 0.3, diff = 0.02, xx = 0.02, yy = 0.08;
-        for(int i =0 ;i<9;++i)
+        if(j == 0)limit = 9;
+        else limit = 2;
+        for(int i =0 ;i<limit;++i)
         {   
-            dashboard = Dashboard(current,currenty + 3.94f - xx - yy - diff, xx, yy);
+            dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 2*diff, xx, yy, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + diff,currenty + 3.94f - xx, yy, xx);
+            dashboard = Dashboard(current+ diff,currenty + 3.94f - 2*yy - xx -3*diff, yy, xx, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + xx + yy ,currenty + 3.94f - xx - yy - diff, xx, yy);
+            dashboard = Dashboard(current + xx + yy,currenty + 3.94f - xx - 2*yy - 2*diff, xx, yy, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + xx + yy,currenty + 3.94f - xx - 2*yy - 2*diff, xx, yy);
+            dashboard = Dashboard(current + xx + yy ,currenty + 3.94f - xx - yy - diff, xx, yy, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current+ diff,currenty + 3.94f - 2*yy - xx -3*diff, yy, xx);
+            dashboard = Dashboard(current + diff,currenty + 3.94f - xx, yy, xx, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 2*diff, xx, yy);
+            dashboard = Dashboard(current,currenty + 3.94f - xx - yy - diff, xx, yy, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + diff,currenty +  3.94f - xx - yy - 2*diff, yy, xx);
+            dashboard = Dashboard(current + diff,currenty +  3.94f - xx - yy - 2*diff, yy, xx, COLOR_NEON_GREEN);
             DashboardPos.push_back(dashboard);
             current += (2*xx + yy + diff);
+        }
+        if(j>0)
+        {
+            color_t col;
+            float offset = 20;
+            for (int i = 0; i < 12; ++i)
+            {
+                col.r = 35 + offset*i;
+                col.g = 0;
+                col.b = 0;
+                dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 3*diff, xx*2, yy*3, col);
+                current += (yy + 0.000001);
+                DashboardPos.push_back(dashboard);
+            }
         }
     }
     // Create and compile our GLSL program from the shaders
