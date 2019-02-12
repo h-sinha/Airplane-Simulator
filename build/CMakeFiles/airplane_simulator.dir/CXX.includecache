@@ -56,6 +56,18 @@ main.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.cpp
+compass.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp
 dashboard.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
@@ -125,6 +137,8 @@ hills.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
 checkpoint.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
+compass.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
 parachute.h

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/ball.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/ball.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/color.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/color.cpp.o"
+  "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/compass.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/functions.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"

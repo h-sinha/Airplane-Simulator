@@ -258,6 +258,33 @@ src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/color.cpp.s
 .PHONY : src/color.cpp.s
 
+src/compass.o: src/compass.cpp.o
+
+.PHONY : src/compass.o
+
+# target to build an object file
+src/compass.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/compass.cpp.o
+.PHONY : src/compass.cpp.o
+
+src/compass.i: src/compass.cpp.i
+
+.PHONY : src/compass.i
+
+# target to preprocess a source file
+src/compass.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/compass.cpp.i
+.PHONY : src/compass.cpp.i
+
+src/compass.s: src/compass.cpp.s
+
+.PHONY : src/compass.s
+
+# target to generate assembly for a file
+src/compass.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/compass.cpp.s
+.PHONY : src/compass.cpp.s
+
 src/dashboard.o: src/dashboard.cpp.o
 
 .PHONY : src/dashboard.o
@@ -552,6 +579,9 @@ help:
 	@echo "... src/color.o"
 	@echo "... src/color.i"
 	@echo "... src/color.s"
+	@echo "... src/compass.o"
+	@echo "... src/compass.i"
+	@echo "... src/compass.s"
 	@echo "... src/dashboard.o"
 	@echo "... src/dashboard.i"
 	@echo "... src/dashboard.s"

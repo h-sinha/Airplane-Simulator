@@ -6,6 +6,7 @@
 #include "missile.h"
 #include "hills.h"
 #include "checkpoint.h"
+#include "compass.h"
 #include "background.h"
 #include "parachute.h"
 #include "functions.h"
@@ -27,6 +28,7 @@ Ball ball1;
 Airplane airplane;
 Background background;
 Checkpoint checkpoint;
+Compass compass;
 std::vector<Parachute> ParachutePos;
 
 float screen_zoom = 2.0, screen_center_x = 0, screen_center_y = 0;
@@ -37,7 +39,7 @@ int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 int score = 0;
 time_t cam_change_time = 0.0;
-string ScoreBoard = "SCORE-", Altitude = "A-", Fuel = "F-";
+string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
 
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
@@ -208,14 +210,17 @@ void draw() {
     {
         if(i < 77)
         {
-            if(i%7 == 0)digit = sevenSegment(Altitude[(i-63)/7]);
+            if(i%7 == 0)digit = sevenSegment(AltitudeBoard[(i-63)/7]);
             if(digit[i%7] == '1')
             {
                 DashboardPos[i].draw(VPScore);
             }
         }
         else
+        {
+            if(airplane.position.y < (i-77)*10)break;
             DashboardPos[i].draw(VPScore);
+        }
     }
     for (int i = 89; i < int(DashboardPos.size()); ++i)
     {
@@ -231,7 +236,7 @@ void draw() {
         else
             DashboardPos[i].draw(VPScore);
     }
-
+    compass.draw(VPScore);
 }
 
 void tick_input(GLFWwindow *window) {
@@ -252,6 +257,7 @@ void tick_input(GLFWwindow *window) {
         // for (auto &x: Hillpos)
             // x.draw();
         airplane.they += 0.01;
+        compass.rotation -= 0.01;
         airplane.moving = 1;
     }
     // else if(!right)airplane.yaw = min(airplane.yaw+0.0001f,0.0f);
@@ -262,6 +268,7 @@ void tick_input(GLFWwindow *window) {
         airplane.yaw += 0.01;
         airplane.roll-=0.01;
         // for (auto &x: Hillpos)x.roll += 0.5;
+        compass.rotation += 0.01;
         airplane.they -= 0.01;
         airplane.moving = 1;
     }
@@ -351,6 +358,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
     checkpoint = Checkpoint(0,0,0);
+    compass = Compass(0.4,0.4,0.4);
     Hills hills;
     for (int i = 0; i < 100; ++i)
     {
