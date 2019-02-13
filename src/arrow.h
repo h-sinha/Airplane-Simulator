@@ -1,23 +1,28 @@
 #include "main.h"
 
-#ifndef MISSILE_H
-#define MISSILE_H
+#ifndef ARROW_H
+#define ARROW_H
 
 
-class Missile {
+class Arrow {
 public:
-    Missile() {}
-    Missile(float x, float y,float z,float anglex, float angley,float anglez, color_t color);
+    Arrow() {}
+    Arrow(float x, float y,float z);
     glm::vec3 position;
     float yaw, pitch, roll;
-    bounding_box_t BoundingBox();
     void draw(glm::mat4 VP);
+    bounding_box_t BoundingBox();
     void set_position(float x, float y, float z);
     void tick();
-    double speed, thex, they, time;
+    double speed;
+    bool active;
     double xlength, ylength, zlength;
 private:
     VAO *object;
+    VAO *object1;
+    VAO *object2;
+    VAO *object3;
+    VAO *object4;
 };
 
 #endif // BALL_H

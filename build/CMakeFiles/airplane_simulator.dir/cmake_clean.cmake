@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/background.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/ball.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/checkpoint.cpp.o"

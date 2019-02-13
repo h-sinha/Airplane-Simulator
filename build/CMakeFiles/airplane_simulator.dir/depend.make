@@ -6,6 +6,11 @@ CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o: ../src/airplane.h
 CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o: ../src/main.h
 
+CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o: ../src/arrow.cpp
+CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o: ../src/arrow.h
+CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o: ../src/main.h
+
 CMakeFiles/airplane_simulator.dir/src/background.cpp.o: ../src/background.cpp
 CMakeFiles/airplane_simulator.dir/src/background.cpp.o: ../src/background.h
 CMakeFiles/airplane_simulator.dir/src/background.cpp.o: ../src/main.h

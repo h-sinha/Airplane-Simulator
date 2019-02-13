@@ -6,6 +6,11 @@ CMakeFiles/airplane_simulator.dir/src/airplane.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/airplane.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+CMakeFiles/airplane_simulator.dir/src/arrow.cpp.o
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/arrow.cpp
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/arrow.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 CMakeFiles/airplane_simulator.dir/src/background.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h

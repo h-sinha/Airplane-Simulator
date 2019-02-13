@@ -1,9 +1,9 @@
-#include "checkpoint.h"
+#include "arrow.h"
 #include "main.h"
 #include "functions.h"
 
-Checkpoint::Checkpoint(float x, float y, float z) {
-    this->position = glm::vec3(x, y, z);
+Arrow::Arrow(float x, float y, float z) {
+    this->position = glm::vec3(0, 0, 0);
     this->yaw = 0;
     this->pitch = 0;
     this->roll = 0;
@@ -16,10 +16,6 @@ Checkpoint::Checkpoint(float x, float y, float z) {
     GLfloat vertex_buffer_data[36*n];
     GLfloat vertex_buffer_data1[36*n];
     GLfloat vertex_buffer_data2[36*n];
-    makeFrustum(0,0,0,0.5f,0.5f,0.5f,n, vertex_buffer_data);
-    makeFrustum(0,0.5,0,0.25f,0.25f,0.25f,n, vertex_buffer_data1);
-    // makeFrustum(0,0.75,0,0.125f,0.125f,0.125f,n, vertex_buffer_data2);
-    makeCone(0,0.72,0,2,0.05,0.5,n,vertex_buffer_data2);
     GLfloat vertex_buffer_data3[]{
         0.0f, 0.92f, 0.0f,
         0.5f, 0.92f, 0.0f,
@@ -31,7 +27,7 @@ Checkpoint::Checkpoint(float x, float y, float z) {
     this->object3 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_RED, GL_FILL);
 }
 
-void Checkpoint::draw(glm::mat4 VP) {
+void Arrow::draw(glm::mat4 VP) {
     if(this->active == 0)return;
     Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
@@ -49,17 +45,17 @@ void Checkpoint::draw(glm::mat4 VP) {
     draw3DObject(this->object3);
 }
 
-void Checkpoint::set_position(float x, float y, float z) {
+void Arrow::set_position(float x, float y, float z) {
     this->position = glm::vec3(x, y,z);
 }
 
-void Checkpoint::tick() {
+void Arrow::tick() {
     // this->rotation += speed;
     // this->position.x -= speed;
     // this->position.y -= speed;
 }
 
-bounding_box_t Checkpoint::BoundingBox() {
+bounding_box_t Arrow::BoundingBox() {
     bounding_box_t a;
     a.xlength = this->xlength;
     a.ylength = this->ylength;

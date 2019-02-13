@@ -24,10 +24,10 @@ GLFWwindow *window;
 std::vector<Hills> Hillpos;
 std::vector<Missile> Missilepos;
 std::vector<Dashboard> DashboardPos;
+std::vector<Checkpoint> CheckpointPos;
 Ball ball1;
 Airplane airplane;
 Background background;
-Checkpoint checkpoint;
 Compass compass;
 std::vector<Parachute> ParachutePos;
 
@@ -139,7 +139,7 @@ void draw() {
    
     for (int i = int(Missilepos.size()) - 1; i >= 0 ; --i)
     {
-        if(Missilepos[i].position.y <= 0.3)
+        if(Missilepos[i].position.y <= 0.3 || Missilepos[i].time >= 2.0)
         {
             Missilepos.erase(Missilepos.begin() + i);
             continue;
@@ -152,12 +152,16 @@ void draw() {
             if(detect_collision(x.BoundingBox(), y.BoundingBox()))
             {
                 y.position.y = -100.0;
+                score += 5;
             }
         }
     }
     // ball1.draw(VP);
     airplane.draw(VP);
-    checkpoint.draw(VP);
+    for (auto &x:CheckpointPos)
+    {
+        x.draw(VP);
+    }
     background.draw(VP);
     for (auto &x:ParachutePos)
     {
@@ -319,11 +323,11 @@ void tick_input(GLFWwindow *window) {
         float posx, posy, posz;
         posx = airplane.position.x;
         posy = airplane.position.y;
-        posz = airplane.position.z;
-        // posx = airplane.position.x - 0.2*sin(airplane.they);
-        // posy = airplane.position.y + 0.2*sin(airplane.thex);
-        // posz = airplane.position.z - 0.2*cos(airplane.they);
-        Missile missile = Missile(posx, posy, posz, airplane.thex, airplane.they, COLOR_NEON_GREEN);
+        posz = airplane.position.z ;
+        // posx = airplane.position.x;
+        // posy = airplane.position.y ;
+        // posz = airplane.position.z  + 0.2*sin(airplane.they);
+        Missile missile = Missile(posx, posy, posz, airplane.thex, airplane.they + 0.001, airplane.they, COLOR_NEON_GREEN);
         Missilepos.push_back(missile);
     }
 }
@@ -331,7 +335,10 @@ void tick_input(GLFWwindow *window) {
 void tick_elements() {
     airplane.tick();
     background.tick();
-    checkpoint.tick();
+    for (auto &x:CheckpointPos)
+    {
+        x.tick();
+    }
     for (auto &x:ParachutePos)
     {
         x.tick();
@@ -357,10 +364,17 @@ void initGL(GLFWwindow *window, int width, int height) {
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
     airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
-    checkpoint = Checkpoint(0,0,0);
+    Checkpoint checkpoint;
+    for (int i = 0; i < 10; ++i)
+    {
+        float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
+        float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));
+        checkpoint = Checkpoint(posx,0,posz);
+        CheckpointPos.push_back(checkpoint);
+    }
     compass = Compass(0.4,0.4,0.4);
     Hills hills;
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 200; ++i)
     {
         float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
         float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));

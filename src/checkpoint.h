@@ -15,6 +15,7 @@ public:
     void set_position(float x, float y, float z);
     void tick();
     double speed;
+    bool active;
     double xlength, ylength, zlength;
 private:
     VAO *object;

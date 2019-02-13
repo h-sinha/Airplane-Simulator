@@ -22,8 +22,8 @@ Compass::Compass(float x, float y, float r) {
     };
     this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, COLOR_RED, GL_FILL);
     this->object1 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data1, COLOR_GAINS_BORO, GL_FILL);
-    this->object2 = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);
-    this->object3 = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data3, COLOR_RED, GL_FILL);
+    this->object2 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);
+    this->object3 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_RED, GL_FILL);
 }
 
 void Compass::draw(glm::mat4 VP) {
