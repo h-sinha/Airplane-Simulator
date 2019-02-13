@@ -54,7 +54,9 @@ void draw() {
     // 2 top_view
     // 3 tower_view
     // 4 helicopter_cam
-    
+    upx = 0;
+    upy = 1;
+    upz = 0;
     //followcam
     if(cam[0])
     {
@@ -68,12 +70,14 @@ void draw() {
     // 1 plane_view
     else if(cam[1])
     {
-         targetx = airplane.position.x;
+         targetx = 1000.0f*sin(airplane.they);
         targety = 0.0f;
-        targetz = 1000.0f;
-       eyex = airplane.position.x ;
-        eyey = airplane.position.y ;
-        eyez = airplane.position.z + 3;
+        targetz = 1000.0f*cos(airplane.they) ;
+          eyex = airplane.position.x + 2*sin(airplane.they);
+        eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
+        eyez = airplane.position.z + 2*cos(airplane.they);
+        upy = cos(airplane.yaw);
+        upz = sin(airplane.yaw);
     }
      // 2 top_view
      else if(cam[2])
@@ -111,7 +115,7 @@ void draw() {
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
     glm::vec3 target (targetx, targety, targetz);
     // Up - Up vector defines tilt of camera.  Don't change unless you are sure!!
-    glm::vec3 up (0, 1, 0);
+    glm::vec3 up (upx, upy, upz);
      glm::vec3 eyeScore (0,0,1);
     // Target - Where is the camera looking at.  Don't change unless you are sure!!
     glm::vec3 targetScore (0, 0, 0);
@@ -248,18 +252,22 @@ void tick_input(GLFWwindow *window) {
     int right = glfwGetKey(window, GLFW_KEY_RIGHT);
     int up = glfwGetKey(window, GLFW_KEY_UP);
     int down = glfwGetKey(window, GLFW_KEY_DOWN);
+    int clock = glfwGetKey(window, GLFW_KEY_E);
+    int anticlock = glfwGetKey(window, GLFW_KEY_Q);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int camera = glfwGetKey(window, GLFW_KEY_C);
     int missile = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
    
     airplane.moving = 0;
+    if(clock){
+        airplane.yaw += 0.01;
+    }
+    if(anticlock){
+        airplane.yaw -= 0.01;
+    }
     if (left) {
         // airplane.position.x += 0.1;
         airplane.roll += 0.01;
-        if (airplane.yaw>-0.5)
-        airplane.yaw -= 0.01;
-        // for (auto &x: Hillpos)
-            // x.draw();
         airplane.they += 0.01;
         compass.rotation -= 0.01;
         airplane.moving = 1;
@@ -267,16 +275,11 @@ void tick_input(GLFWwindow *window) {
     // else if(!right)airplane.yaw = min(airplane.yaw+0.0001f,0.0f);
 
     if(right){
-        // airplane.position.x -= 0.1;
-        if (airplane.yaw<0.5)
-        airplane.yaw += 0.01;
         airplane.roll-=0.01;
-        // for (auto &x: Hillpos)x.roll += 0.5;
         compass.rotation += 0.01;
         airplane.they -= 0.01;
         airplane.moving = 1;
     }
-    // else if(!left)airplane.yaw = max(airplane.yaw-0.0001f,0.0f);
 
     if(up){
         // airplane.position.z += 0.1;
