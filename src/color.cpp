@@ -20,3 +20,6 @@ const color_t COLOR_test = { 255, 90, 0 };
 const color_t COLOR_BALL = { 202, 231, 226 };
 const color_t COLOR_COIN = { 207, 182, 60 };
 const color_t COLOR_NEON_GREEN = { 57, 255, 20 };
+double Mousexpos = 0.0;
+double Mouseypos = 0.0;
+double MouseScroll = 0.0;

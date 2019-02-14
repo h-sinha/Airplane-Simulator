@@ -35,6 +35,7 @@ void keyboard(GLFWwindow *window, int key, int scancode, int action, int mods);
 void keyboardChar(GLFWwindow *window, unsigned int key);
 void mouseButton(GLFWwindow *window, int button, int action, int mods);
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
+void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 
 // other_handlers.cpp
 void error_callback(int error, const char *description);
@@ -102,6 +103,9 @@ extern const color_t COLOR_COIN;
 extern const color_t COLOR_BALL;
 extern const color_t COLOR_FIRE_BRICK;
 extern const color_t COLOR_test;
+extern double Mousexpos;
+extern double Mouseypos;
+extern double MouseScroll;
 #include "main.h"
 
 

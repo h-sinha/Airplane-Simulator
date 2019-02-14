@@ -42,7 +42,7 @@ Timer t60(1.0 / 60);
 int score = 0, current_checkpoint;
 time_t cam_change_time = 0.0;
 string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
-
+double helcamxpos = 0.0, helcamypos = 0.0;
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
 void draw() {
@@ -104,12 +104,23 @@ void draw() {
     // 4 helicopter_cam
      else if(cam[4])
     {
-        targetx = airplane.position.x;
-        targety = airplane.position.y;
-        targetz = airplane.position.z;
-        eyex = airplane.position.x ;
-        eyey = airplane.position.y + 3;
-        eyez = airplane.position.z - 2;
+         // eyex = airplane.position.x + 2*sin(airplane.they);
+        // eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
+        // eyez = airplane.position.z + 2*cos(airplane.they);
+        if(Mousexpos > helcamxpos)eyex -= 0.1;
+        if(Mousexpos < helcamxpos)eyex+=0.1;
+        if(Mouseypos > helcamypos)eyey-=0.1;
+        if(Mouseypos < helcamypos)eyey+=0.1;
+        eyez += MouseScroll;
+        MouseScroll = 0;
+        helcamxpos = Mousexpos;
+        helcamypos = Mouseypos;
+        // targetx = airplane.position.x;
+        // targety = airplane.position.y;
+        // targetz = airplane.position.z;
+        // eyex = airplane.position.x ;
+        // eyey = airplane.position.y + 3;
+        // eyez = airplane.position.z - 2;
     }
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye (eyex, eyey, eyez );
@@ -340,11 +351,22 @@ void tick_input(GLFWwindow *window) {
         // airplane.thex = min(airplane.thex+0.1f,0.0f);
         // airplane.position.y = max(airplane.position.y-0.1,0.0);
     }
-    if(camera && time(NULL) - cam_change_time > 1.0)
+    if(camera && time(NULL) - cam_change_time > 0.5)
     {
         cam[current_camera] = 0;
         current_camera++;
         current_camera%=5;
+        if(current_camera == 4)
+        {
+            helcamxpos = Mousexpos;
+            helcamypos = Mouseypos;
+             targetx = airplane.position.x;
+            targety = airplane.position.y;
+            targetz = airplane.position.z;
+            eyex = airplane.position.x - 2*sin(airplane.they);
+            eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
+            eyez = airplane.position.z - 2*cos(airplane.they);
+        }
         cam[current_camera] = 1;
         cam_change_time = time(NULL);
     }

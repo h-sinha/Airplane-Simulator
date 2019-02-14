@@ -85,4 +85,11 @@ void mouseButton(GLFWwindow *window, int button, int action, int mods) {
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
     // Do something
+    if(yoffset >0)MouseScroll += 0.1;
+    if(yoffset <0)MouseScroll -= 0.1;
+}
+void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    Mousexpos = xpos;
+    Mouseypos = ypos;
 }
