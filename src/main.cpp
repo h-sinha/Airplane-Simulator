@@ -6,6 +6,7 @@
 #include "missile.h"
 #include "hills.h"
 #include "checkpoint.h"
+#include "arrow.h"
 #include "compass.h"
 #include "background.h"
 #include "parachute.h"
@@ -13,7 +14,7 @@
 
 using namespace std;
 
-GLMatrices Matrices, MatricesScore;
+GLMatrices Matrices, MatricesScore, MatricesArrow;
 GLuint     programID;
 GLFWwindow *window;
 
@@ -26,6 +27,7 @@ std::vector<Missile> Missilepos;
 std::vector<Dashboard> DashboardPos;
 std::vector<Checkpoint> CheckpointPos;
 Ball ball1;
+Arrow arrow;
 Airplane airplane;
 Background background;
 Compass compass;
@@ -37,7 +39,7 @@ float eyex, eyey, eyez, targetx, targety, targetz, upx, upy, upz;
 bool cam[5];
 int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
-int score = 0;
+int score = 0, current_checkpoint;
 time_t cam_change_time = 0.0;
 string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
 
@@ -71,9 +73,9 @@ void draw() {
     else if(cam[1])
     {
          targetx = 1000.0f*sin(airplane.they);
-        targety = 0.0f;
+        targety = sin(airplane.thex);
         targetz = 1000.0f*cos(airplane.they) ;
-          eyex = airplane.position.x + 2*sin(airplane.they);
+        eyex = airplane.position.x + 2*sin(airplane.they);
         eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
         eyez = airplane.position.z + 2*cos(airplane.they);
         upy = cos(airplane.yaw);
@@ -97,7 +99,7 @@ void draw() {
         targetz = airplane.position.z;
         eyex = airplane.position.x + 10;
         eyey = airplane.position.y + 10;
-        eyez = airplane.position.z ;
+        eyez = airplane.position.z + 10;
     }
     // 4 helicopter_cam
      else if(cam[4])
@@ -138,6 +140,7 @@ void draw() {
     // Don't change unless you are sure!!
     glm::mat4 MVP;  // MVP = Projection * View * Model
     glm::mat4 MVPScore;  // MVP = Projection * View * Model
+    glm::mat4 MVPArrow;  // MVP = Projection * View * Model
 
     // Scene render
    
@@ -160,12 +163,29 @@ void draw() {
             }
         }
     }
-    // ball1.draw(VP);
+    arrow.position.x = airplane.position.x + 5*sin(airplane.they);
+    arrow.position.y = airplane.position.y + 5*sin(-airplane.thex);
+    arrow.position.z = airplane.position.z + 5*cos(airplane.they);
+    glm::vec3 dir(CheckpointPos[current_checkpoint].position.x - arrow.position.x,
+                CheckpointPos[current_checkpoint].position.y - arrow.position.y,
+                CheckpointPos[current_checkpoint].position.z - arrow.position.z);
+    glm::normalize(dir);
+    glm::vec3 upa(0,1,0);
+    upa = glm::normalize(glm::cross(dir, upa));
+    glm::normalize(upa);
+    arrow.yaw = dir[2];
+    arrow.pitch = dir[0];
+    arrow.roll = dir[1];
+    glm::vec3 eyeArrow(arrow.position.x, arrow.position.y, arrow.position.z - 10);
+    glm::vec3 targetArrow(CheckpointPos[current_checkpoint].position.x, CheckpointPos[current_checkpoint].position.y, CheckpointPos[current_checkpoint].position.z);
+    // glm::vec3 eyeArrow (airplane.position);
+    // glm::vec3 targetArrow (CheckpointPos[current_checkpoint].position);
+    // glm::vec3 upArrow (0, 1, 0);
+    MatricesArrow.view = glm::lookAt( eyeArrow, targetArrow, upa );
+    glm::mat4 VPArrow = MatricesArrow.projection * MatricesArrow.view;
     airplane.draw(VP);
-    for (auto &x:CheckpointPos)
-    {
-        x.draw(VP);
-    }
+    arrow.draw(VPScore);
+    CheckpointPos[current_checkpoint].draw(VP);
     background.draw(VP);
     for (auto &x:ParachutePos)
     {
@@ -257,17 +277,21 @@ void tick_input(GLFWwindow *window) {
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int camera = glfwGetKey(window, GLFW_KEY_C);
     int missile = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+    int bomb = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
    
     airplane.moving = 0;
     if(clock){
-        airplane.yaw += 0.01;
+        airplane.yaw -= 0.01;
+        // arrow.yaw += 0.01;
     }
     if(anticlock){
-        airplane.yaw -= 0.01;
+        airplane.yaw += 0.01;
+        // arrow.yaw -= 0.01;
     }
     if (left) {
         // airplane.position.x += 0.1;
         airplane.roll += 0.01;
+        // arrow.roll += 0.01;
         airplane.they += 0.01;
         compass.rotation -= 0.01;
         airplane.moving = 1;
@@ -276,6 +300,7 @@ void tick_input(GLFWwindow *window) {
 
     if(right){
         airplane.roll-=0.01;
+        // arrow.roll -= 0.01;
         compass.rotation += 0.01;
         airplane.they -= 0.01;
         airplane.moving = 1;
@@ -292,7 +317,7 @@ void tick_input(GLFWwindow *window) {
        airplane.position.y -= 0.1;
         airplane.position.y -= 0.1*sin(-airplane.thex);
         airplane.moving = 1;
-        if(airplane.pitch < 0.5)
+        if(airplane.pitch < 0.3)
         {
             airplane.pitch += 0.01;
             airplane.thex += 0.01;
@@ -301,9 +326,10 @@ void tick_input(GLFWwindow *window) {
     if(space){
         airplane.position.y += 0.1;
         airplane.moving = 1;
-        if(airplane.pitch > -0.5)
+        if(airplane.pitch > -0.3)
         {
             airplane.pitch -= 0.01;
+            // arrow.pitch -= 0.01;
             airplane.thex -= 0.01;
         }
         // airplane.thex -= 0.1;
@@ -327,17 +353,24 @@ void tick_input(GLFWwindow *window) {
         posx = airplane.position.x;
         posy = airplane.position.y;
         posz = airplane.position.z ;
-        // posx = airplane.position.x;
-        // posy = airplane.position.y ;
-        // posz = airplane.position.z  + 0.2*sin(airplane.they);
-        Missile missile = Missile(posx, posy, posz, airplane.thex, airplane.they + 0.001, airplane.they, COLOR_NEON_GREEN);
+        Missile missile = Missile(0,posx, posy, posz, airplane.thex, airplane.they + 0.001, airplane.they, COLOR_NEON_GREEN);
+        Missilepos.push_back(missile);
+    }
+     if(bomb){
+        float posx, posy, posz;
+        posx = airplane.position.x;
+        posy = airplane.position.y;
+        posz = airplane.position.z ;
+        Missile missile = Missile(1,posx, posy, posz, float(M_PI/2), 0 , airplane.they, COLOR_BLACK);
         Missilepos.push_back(missile);
     }
 }
 
 void tick_elements() {
+    CheckpointPos[current_checkpoint].active = 1;
     airplane.tick();
     background.tick();
+    arrow.tick();
     for (auto &x:CheckpointPos)
     {
         x.tick();
@@ -367,11 +400,12 @@ void initGL(GLFWwindow *window, int width, int height) {
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
     airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
+    arrow = Arrow(airplane.position.x, airplane.position.y + 0.2, airplane.position.z + 3.5);
     Checkpoint checkpoint;
     for (int i = 0; i < 10; ++i)
     {
-        float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
-        float posz = -1000.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(2000.0)));
+        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
+        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
         checkpoint = Checkpoint(posx,0,posz);
         CheckpointPos.push_back(checkpoint);
     }
@@ -437,6 +471,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Get a handle for our "MVP" uniform
     Matrices.MatrixID = glGetUniformLocation(programID, "MVP");
     MatricesScore.MatrixID = glGetUniformLocation(programID, "MVPScore");
+    MatricesArrow.MatrixID = glGetUniformLocation(programID, "MVPArrow");
 
 
     reshapeWindow (window, width, height);
@@ -510,4 +545,5 @@ void reset_screen() {
 //     float right  = 10 / screen_zoom;
     Matrices.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);
     MatricesScore.projection = glm::ortho(0.0f, 4.0f, 4.0f, 0.0f, 0.1f, 500.0f);
+    MatricesArrow.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);
 }

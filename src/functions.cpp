@@ -1,12 +1,12 @@
 #include "functions.h"
 void makeCube(float xlength, float ylength, float zlength, GLfloat vertex_buffer_data[]){
  GLfloat vertex_buffer_data1[] = {
-         -xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f, // trideg 1 : begin
+         -xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f, 
         -xlength/2.0f ,-ylength/2.0f , zlength/2.0f,
-        -xlength/2.0f , ylength/2.0f , zlength/2.0f, // trideg 1 : end
-        xlength/2.0f , ylength/2.0f ,-zlength/2.0f, // trideg 2 : begin
+        -xlength/2.0f , ylength/2.0f , zlength/2.0f,
+        xlength/2.0f , ylength/2.0f ,-zlength/2.0f, 
         -xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f,
-        -xlength/2.0f , ylength/2.0f ,-zlength/2.0f, // trideg 2 : end
+        -xlength/2.0f , ylength/2.0f ,-zlength/2.0f, 
         xlength/2.0f ,-ylength/2.0f , zlength/2.0f,
         -xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f,
         xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f,

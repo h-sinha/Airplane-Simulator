@@ -32,7 +32,7 @@ Checkpoint::Checkpoint(float x, float y, float z) {
 }
 
 void Checkpoint::draw(glm::mat4 VP) {
-    if(this->active == 0)return;
+    // if(this->active == 0)return;
     Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
     glm::mat4 zrotate    = glm::rotate((float) (this->yaw * M_PI / 180.0f), glm::vec3(0, 0, 1));

@@ -50,6 +50,7 @@ CMakeFiles/airplane_simulator.dir/src/input.cpp.o: ../src/input.cpp
 CMakeFiles/airplane_simulator.dir/src/input.cpp.o: ../src/main.h
 
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/airplane.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/arrow.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/background.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/ball.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/checkpoint.h

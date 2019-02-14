@@ -149,6 +149,8 @@ hills.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
 checkpoint.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
+arrow.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/arrow.h
 compass.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
 background.h

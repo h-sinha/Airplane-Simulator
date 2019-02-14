@@ -2,23 +2,25 @@
 #include "main.h"
 #include "functions.h"
 
-Missile::Missile(float x, float y, float z, float anglex, float angley, float anglez, color_t color) {
-    this->position = glm::vec3(x, y, z);
+Missile::Missile(int bomb,float x, float y, float z, float anglex, float angley, float anglez, color_t color) {
+    this->position = glm::vec3(x, y, z + 0.1);
     this->yaw = anglez;
     this->pitch = 0;
+    this->bomb = bomb;
     this->roll = 0;
     this->speed = 1;
-    this->xlength = 0.4;
-    this->ylength = 0.4;
-    this->zlength = 0.4;
+    this->xlength = 0.2;
+    this->ylength = 0.2;
+    this->zlength = 0.2;
     this->speed = 0.05f;
     this->thex = anglex;
     this->they = angley;
     this->time = 0;
     int n = 25;
-    GLfloat vertex_buffer_data[9*n];
-    makeCone(0,0,0,3,0.2,0.2,n,vertex_buffer_data);
-    this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, color, GL_FILL);
+    GLfloat vertex_buffer_data[36*n];
+    makeFrustum(0,0,0,0.1,0.1,0.2,n,vertex_buffer_data);
+
+    this->object = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data, color, GL_FILL);
 }
 
 void Missile::draw(glm::mat4 VP) {
@@ -40,8 +42,10 @@ void Missile::set_position(float x, float y, float z) {
 }
 
 void Missile::tick() {
+    if(!this->bomb){
     this->position.z += 0.5*cos(this->they);
     this->position.x += 0.5*sin(this->they);
+    }
     this->position.y -= 0.5*sin(this->thex);
     this->time+=(1.0f/60.f);
     this->pitch += 0.1;

@@ -3,7 +3,7 @@
 #include "functions.h"
 
 Arrow::Arrow(float x, float y, float z) {
-    this->position = glm::vec3(0, 0, 0);
+    this->position = glm::vec3(x, y, z);
     this->yaw = 0;
     this->pitch = 0;
     this->roll = 0;
@@ -12,23 +12,57 @@ Arrow::Arrow(float x, float y, float z) {
     this->ylength = 1;
     this->zlength = 2;
     this->active = 0;
-    int n = 20;
-    GLfloat vertex_buffer_data[36*n];
-    GLfloat vertex_buffer_data1[36*n];
-    GLfloat vertex_buffer_data2[36*n];
-    GLfloat vertex_buffer_data3[]{
-        0.0f, 0.92f, 0.0f,
-        0.5f, 0.92f, 0.0f,
-        0.0f, 1.12f, 0.0f,
+    GLfloat vertex_buffer_data1[108];
+    GLfloat vertex_buffer_data[]{
+          0.0f, 0.2f, 0.4f,
+        -0.2f, 0.2f, 0.0f,
+        0.2f, 0.2f, 0.0f,
+
+        0.0f, 0.0f, 0.4f,
+        -0.2f, 0.0f, 0.0f,
+        0.2f, 0.0f, 0.0f,
+
+        0.0f, 0.0f, 0.4f,
+        0.0f, 0.2f, 0.4f,
+        -0.2f, 0.2f, 0.0f,
+
+        0.0f, 0.0f, 0.4f,
+        -0.2f, 0.0f, 0.0f,
+        -0.2f, 0.2f, 0.0f,
+
+         0.0f, 0.0f, 0.4f,
+        0.0f, 0.2f, 0.4f,
+        0.2f, 0.2f, 0.0f,
+
+        0.0f, 0.0f, 0.4f,
+        0.2f, 0.0f, 0.0f,
+        0.2f, 0.2f, 0.0f,
+
     };
-    this->object = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data, COLOR_BROWN, GL_FILL);
-    this->object1 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data1, COLOR_BLACK, GL_FILL);
-    this->object2 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);
-    this->object3 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_RED, GL_FILL);
+      // GLfloat color_buffer_data[54];
+      // for (int i = 0; i < 54; i += 3)
+      // {
+      //   if(i < 9)
+      //   {
+      //       color_buffer_data[i] = COLOR_RED.r;
+      //       color_buffer_data[i + 1] = COLOR_RED.g;
+      //       color_buffer_data[i + 2] = COLOR_RED.b;
+      //   }
+      //   else
+      //   {
+      //       color_buffer_data[i] = COLOR_BLACK.r;
+      //       color_buffer_data[i + 1] = COLOR_BLACK.g;
+      //       color_buffer_data[i + 2] = COLOR_BLACK.b;
+      //   }
+      // }
+    makeCube(0.2,0.2, 0.6, vertex_buffer_data1);
+    this->object = create3DObject(GL_TRIANGLES, 6*3, vertex_buffer_data, COLOR_RED, GL_FILL);
+    this->object1 = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data1, COLOR_BLACK, GL_FILL);
+    // this->object2 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);
+    // this->object3 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_RED, GL_FILL);
 }
 
 void Arrow::draw(glm::mat4 VP) {
-    if(this->active == 0)return;
     Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate (this->position);    // glTranslatef
     glm::mat4 zrotate    = glm::rotate((float) (this->yaw * M_PI / 180.0f), glm::vec3(0, 0, 1));
@@ -41,8 +75,6 @@ void Arrow::draw(glm::mat4 VP) {
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
     draw3DObject(this->object1);
-    draw3DObject(this->object2);
-    draw3DObject(this->object3);
 }
 
 void Arrow::set_position(float x, float y, float z) {
