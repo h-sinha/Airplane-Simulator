@@ -37,6 +37,11 @@ CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.cpp
 CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.h
 CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/main.h
 
+CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/fuel.cpp
+CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/fuel.h
+CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/main.h
+
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o: ../src/functions.cpp
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o: ../src/main.h
@@ -56,6 +61,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/ball.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/checkpoint.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/compass.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/dashboard.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/fuel.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/hills.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.cpp
@@ -63,6 +69,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/missile.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/parachute.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/timer.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/volcano.h
 
 CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/missile.cpp.o: ../src/main.h
@@ -82,4 +89,9 @@ CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o: ../src/parachute.h
 
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: ../src/timer.cpp
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: ../src/timer.h
+
+CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o: ../src/main.h
+CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o: ../src/volcano.cpp
+CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o: ../src/volcano.h
 

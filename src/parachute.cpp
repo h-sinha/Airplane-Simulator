@@ -16,7 +16,7 @@ Parachute::Parachute(float x, float y, float z) {
     GLfloat vertex_buffer_data2[36*n];
     GLfloat color_buffer_data2[36*n];
     GLfloat color_buffer_data[36*n];
-    makeCube(1.25,1.25,1.25,vertex_buffer_data);
+    makeCube(0,0,0,1.25,1.25,1.25,vertex_buffer_data);
     makeCone(0.0,1.25,0.0,2, 1.25, 1.25, n,vertex_buffer_data2);
     int cur = 0;
      for (int i = 0; i < n; ++i)

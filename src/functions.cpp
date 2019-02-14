@@ -1,5 +1,5 @@
 #include "functions.h"
-void makeCube(float xlength, float ylength, float zlength, GLfloat vertex_buffer_data[]){
+void makeCube(float xoffset, float yoffset, float zoffset, float xlength, float ylength, float zlength, GLfloat vertex_buffer_data[]){
  GLfloat vertex_buffer_data1[] = {
          -xlength/2.0f ,-ylength/2.0f ,-zlength/2.0f, 
         -xlength/2.0f ,-ylength/2.0f , zlength/2.0f,
@@ -41,6 +41,9 @@ void makeCube(float xlength, float ylength, float zlength, GLfloat vertex_buffer
     };
     for (int i = 0; i < 108; ++i)
     {
+        if(i%3 == 0)vertex_buffer_data1[i] += xoffset;
+        if(i%3 == 1)vertex_buffer_data1[i] += yoffset;
+        if(i%3 == 2)vertex_buffer_data1[i] += zoffset;
     	vertex_buffer_data[i] = vertex_buffer_data1[i];
     }
 }

@@ -339,6 +339,33 @@ src/dashboard.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.s
 .PHONY : src/dashboard.cpp.s
 
+src/fuel.o: src/fuel.cpp.o
+
+.PHONY : src/fuel.o
+
+# target to build an object file
+src/fuel.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o
+.PHONY : src/fuel.cpp.o
+
+src/fuel.i: src/fuel.cpp.i
+
+.PHONY : src/fuel.i
+
+# target to preprocess a source file
+src/fuel.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/fuel.cpp.i
+.PHONY : src/fuel.cpp.i
+
+src/fuel.s: src/fuel.cpp.s
+
+.PHONY : src/fuel.s
+
+# target to generate assembly for a file
+src/fuel.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/fuel.cpp.s
+.PHONY : src/fuel.cpp.s
+
 src/functions.o: src/functions.cpp.o
 
 .PHONY : src/functions.o
@@ -582,6 +609,33 @@ src/timer.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/timer.cpp.s
 .PHONY : src/timer.cpp.s
 
+src/volcano.o: src/volcano.cpp.o
+
+.PHONY : src/volcano.o
+
+# target to build an object file
+src/volcano.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o
+.PHONY : src/volcano.cpp.o
+
+src/volcano.i: src/volcano.cpp.i
+
+.PHONY : src/volcano.i
+
+# target to preprocess a source file
+src/volcano.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/volcano.cpp.i
+.PHONY : src/volcano.cpp.i
+
+src/volcano.s: src/volcano.cpp.s
+
+.PHONY : src/volcano.s
+
+# target to generate assembly for a file
+src/volcano.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/volcano.cpp.s
+.PHONY : src/volcano.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -615,6 +669,9 @@ help:
 	@echo "... src/dashboard.o"
 	@echo "... src/dashboard.i"
 	@echo "... src/dashboard.s"
+	@echo "... src/fuel.o"
+	@echo "... src/fuel.i"
+	@echo "... src/fuel.s"
 	@echo "... src/functions.o"
 	@echo "... src/functions.i"
 	@echo "... src/functions.s"
@@ -642,6 +699,9 @@ help:
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"
+	@echo "... src/volcano.o"
+	@echo "... src/volcano.i"
+	@echo "... src/volcano.s"
 .PHONY : help
 
 

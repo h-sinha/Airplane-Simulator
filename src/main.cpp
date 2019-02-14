@@ -11,7 +11,8 @@
 #include "background.h"
 #include "parachute.h"
 #include "functions.h"
-
+#include "volcano.h"
+#include "fuel.h"
 using namespace std;
 
 GLMatrices Matrices, MatricesScore, MatricesArrow;
@@ -26,6 +27,8 @@ std::vector<Hills> Hillpos;
 std::vector<Missile> Missilepos;
 std::vector<Dashboard> DashboardPos;
 std::vector<Checkpoint> CheckpointPos;
+std::vector<Volcano> VolcanoPos;
+std::vector<Fuel> FuelPos;
 Ball ball1;
 Arrow arrow;
 Airplane airplane;
@@ -40,7 +43,8 @@ bool cam[5];
 int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 int score = 0, current_checkpoint;
-time_t cam_change_time = 0.0;
+time_t cam_change_time = 0.0, fuel_change_time = 0.0;
+int fuelvolume = 12;
 string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
 double helcamxpos = 0.0, helcamypos = 0.0;
 /* Render the scene with openGL */
@@ -201,12 +205,31 @@ void draw() {
     for (auto &x:ParachutePos)
     {
         x.draw(VP);
+        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+            gameOver = 1;
     }
     for(auto &x:Hillpos)
     {
         x.draw(VP);
         if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
             gameOver = 1;
+    }
+    for(auto &x:VolcanoPos)
+    {
+        x.draw(VP);
+        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+            gameOver = 1;
+    }
+    Fuel x;
+    for (int i = int(FuelPos.size()) - 1; i >= 0; --i)
+    {
+        x = FuelPos[i];
+        x.draw(VP);
+        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+        {
+            FuelPos.erase(FuelPos.begin() + i);
+            fuelvolume = 12;
+        }
     }
     for(auto &x:Missilepos)x.draw(VP);
     string digit;
@@ -273,7 +296,10 @@ void draw() {
             }
         }
         else
+        {
+            if(i - 102 > fuelvolume)break;
             DashboardPos[i].draw(VPScore);
+        }
     }
     compass.draw(VPScore);
 }
@@ -292,12 +318,10 @@ void tick_input(GLFWwindow *window) {
    
     airplane.moving = 0;
     if(clock){
-        airplane.yaw -= 0.01;
-        // arrow.yaw += 0.01;
+        airplane.yaw += 0.01;
     }
     if(anticlock){
-        airplane.yaw += 0.01;
-        // arrow.yaw -= 0.01;
+        airplane.yaw -= 0.01;
     }
     if (left) {
         // airplane.position.x += 0.1;
@@ -389,6 +413,11 @@ void tick_input(GLFWwindow *window) {
 }
 
 void tick_elements() {
+    if(time(NULL) - fuel_change_time > 5.0)
+    {
+        fuelvolume--;
+        fuel_change_time = time(NULL);
+    }
     CheckpointPos[current_checkpoint].active = 1;
     airplane.tick();
     background.tick();
@@ -401,11 +430,7 @@ void tick_elements() {
     {
         x.tick();
     }
-    for (auto&x:Hillpos)
-    {
-        x.tick();
-    }
-     for (auto&x:Missilepos)
+    for (auto&x:Missilepos)
     {
         x.tick();
     }
@@ -440,9 +465,25 @@ void initGL(GLFWwindow *window, int width, int height) {
         hills = Hills(posx,0.0, posz);
         Hillpos.push_back(hills);
     }
-
+    Volcano volcano;
+    for (int i = 0; i < 10; ++i)
+    {
+        float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
+        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        volcano = Volcano(posx,0.0, posz);
+        VolcanoPos.push_back(volcano);
+    }
+    Fuel fuel;
+    for (int i = 0; i < 10; ++i)
+    {
+        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
+        float posy = 0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
+        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        fuel = Fuel(posx,posy, posz);
+        FuelPos.push_back(fuel);
+    }
     Parachute parachute;
-    for (int i = 0; i < 20; ++i)
+    for (int i = 0; i < 10; ++i)
     {
         parachute = Parachute(0,0,0);
         ParachutePos.push_back(parachute);

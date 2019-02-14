@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/color.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/compass.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/functions.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/input.cpp.o"
@@ -16,6 +17,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o"
   "airplane_simulator.pdb"
   "airplane_simulator"
 )

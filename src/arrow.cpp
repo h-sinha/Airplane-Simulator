@@ -55,7 +55,7 @@ Arrow::Arrow(float x, float y, float z) {
       //       color_buffer_data[i + 2] = COLOR_BLACK.b;
       //   }
       // }
-    makeCube(0.2,0.2, 0.6, vertex_buffer_data1);
+    makeCube(0,0,0,0.2,0.2, 0.6, vertex_buffer_data1);
     this->object = create3DObject(GL_TRIANGLES, 6*3, vertex_buffer_data, COLOR_RED, GL_FILL);
     this->object1 = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data1, COLOR_BLACK, GL_FILL);
     // this->object2 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);

@@ -37,6 +37,11 @@ CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.cpp
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 CMakeFiles/airplane_simulator.dir/src/functions.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
@@ -57,6 +62,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/checkpoint.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.cpp
@@ -64,6 +70,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.h
 CMakeFiles/airplane_simulator.dir/src/missile.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
@@ -83,3 +90,8 @@ CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.h
+CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.cpp
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.h

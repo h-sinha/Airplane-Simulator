@@ -12,7 +12,7 @@ Ball::Ball(float x, float y, float z,color_t color) {
     this->ylength = 2;
     this->zlength = 2;
     GLfloat vertex_buffer_data[108];
-    makeCube(2,2,2,vertex_buffer_data);
+    makeCube(0,0,0,2,2,2,vertex_buffer_data);
     static const GLfloat g_color_buffer_data[] = { 
         0.583f,  0.771f,  0.014f,
         0.609f,  0.115f,  0.436f,
