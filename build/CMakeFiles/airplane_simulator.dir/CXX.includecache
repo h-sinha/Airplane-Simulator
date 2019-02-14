@@ -175,6 +175,8 @@ volcano.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.h
 fuel.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.h
+smoke.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 iostream
@@ -263,6 +265,18 @@ functions.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.cpp
+smoke.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 

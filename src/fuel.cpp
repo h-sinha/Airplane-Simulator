@@ -8,9 +8,9 @@ Fuel::Fuel(float x, float y, float z) {
     this->pitch = 0;
     this->roll = 0;
     this->speed = 1;
-    this->xlength = 1.6;
-    this->ylength = 100;
-    this->zlength = 1.6;
+    this->xlength = 0.2;
+    this->ylength = 0.2;
+    this->zlength = 0.2;
     int n = 10;
     GLfloat vertex_buffer_data[36*n];
     // GLfloat  color_buffer_data[36*n];

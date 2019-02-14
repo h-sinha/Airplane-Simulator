@@ -68,6 +68,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/main.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/missile.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/parachute.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/smoke.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/timer.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/volcano.h
 
@@ -86,6 +87,11 @@ CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o: ../src/main.h
 CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o: ../src/parachute.cpp
 CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o: ../src/parachute.h
+
+CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o: ../src/main.h
+CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o: ../src/smoke.cpp
+CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o: ../src/smoke.h
 
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: ../src/timer.cpp
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o: ../src/timer.h

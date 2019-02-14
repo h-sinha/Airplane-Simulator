@@ -582,6 +582,33 @@ src/parachute.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/parachute.cpp.s
 .PHONY : src/parachute.cpp.s
 
+src/smoke.o: src/smoke.cpp.o
+
+.PHONY : src/smoke.o
+
+# target to build an object file
+src/smoke.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o
+.PHONY : src/smoke.cpp.o
+
+src/smoke.i: src/smoke.cpp.i
+
+.PHONY : src/smoke.i
+
+# target to preprocess a source file
+src/smoke.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/smoke.cpp.i
+.PHONY : src/smoke.cpp.i
+
+src/smoke.s: src/smoke.cpp.s
+
+.PHONY : src/smoke.s
+
+# target to generate assembly for a file
+src/smoke.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/smoke.cpp.s
+.PHONY : src/smoke.cpp.s
+
 src/timer.o: src/timer.cpp.o
 
 .PHONY : src/timer.o
@@ -696,6 +723,9 @@ help:
 	@echo "... src/parachute.o"
 	@echo "... src/parachute.i"
 	@echo "... src/parachute.s"
+	@echo "... src/smoke.o"
+	@echo "... src/smoke.i"
+	@echo "... src/smoke.s"
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"

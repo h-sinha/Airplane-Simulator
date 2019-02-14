@@ -21,6 +21,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/nonedit.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/nonedit.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/other_handlers.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o"
+  "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o"
   )

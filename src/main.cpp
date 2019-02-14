@@ -13,6 +13,7 @@
 #include "functions.h"
 #include "volcano.h"
 #include "fuel.h"
+#include "smoke.h"
 using namespace std;
 
 GLMatrices Matrices, MatricesScore, MatricesArrow;
@@ -29,6 +30,7 @@ std::vector<Dashboard> DashboardPos;
 std::vector<Checkpoint> CheckpointPos;
 std::vector<Volcano> VolcanoPos;
 std::vector<Fuel> FuelPos;
+std::vector<Smoke> SmokePos;
 Ball ball1;
 Arrow arrow;
 Airplane airplane;
@@ -229,6 +231,16 @@ void draw() {
         {
             FuelPos.erase(FuelPos.begin() + i);
             fuelvolume = 12;
+        }
+    }
+    Smoke smk;
+    for (int i = int(SmokePos.size()) - 1; i >= 0; --i)
+    {
+        smk = SmokePos[i];
+        smk.draw(VP);
+        if(detect_collision(smk.BoundingBox(), airplane.BoundingBox()))
+        {
+            SmokePos.erase(SmokePos.begin() + i);
         }
     }
     for(auto &x:Missilepos)x.draw(VP);
@@ -481,6 +493,15 @@ void initGL(GLFWwindow *window, int width, int height) {
         float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
         fuel = Fuel(posx,posy, posz);
         FuelPos.push_back(fuel);
+    }
+    Smoke smoke;
+    for (int i = 0; i < 10; ++i)
+    {
+        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
+        float posy = 0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
+        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        smoke = Smoke(posx,posy, posz);
+        SmokePos.push_back(smoke);
     }
     Parachute parachute;
     for (int i = 0; i < 10; ++i)
