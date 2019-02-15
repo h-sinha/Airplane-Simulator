@@ -180,28 +180,47 @@ void draw() {
             }
         }
     }
-    arrow.position.x = airplane.position.x + 5*sin(airplane.they);
-    arrow.position.y = airplane.position.y + 5*sin(-airplane.thex);
-    arrow.position.z = airplane.position.z + 5*cos(airplane.they);
-    glm::vec3 dir(CheckpointPos[current_checkpoint].position.x - arrow.position.x,
-                CheckpointPos[current_checkpoint].position.y - arrow.position.y,
-                CheckpointPos[current_checkpoint].position.z - arrow.position.z);
-    glm::normalize(dir);
-    glm::vec3 upa(0,1,0);
-    upa = glm::normalize(glm::cross(dir, upa));
-    glm::normalize(upa);
-    arrow.yaw = dir[2];
-    arrow.pitch = dir[0];
-    arrow.roll = dir[1];
-    glm::vec3 eyeArrow(arrow.position.x, arrow.position.y, arrow.position.z - 10);
-    glm::vec3 targetArrow(CheckpointPos[current_checkpoint].position.x, CheckpointPos[current_checkpoint].position.y, CheckpointPos[current_checkpoint].position.z);
+    arrow.position.x= CheckpointPos[current_checkpoint].position.x;
+    arrow.position.y= airplane.position.y + 2;
+    arrow.position.z= CheckpointPos[current_checkpoint].position.z;
+    // arrow.position.x = airplane.position.x + 5*sin(airplane.they);
+    // arrow.position.y = airplane.position.y + 5*sin(-airplane.thex);
+    // arrow.position.z = airplane.position.z + 5*cos(airplane.they);
+    // glm::vec3 dir(CheckpointPos[current_checkpoint].position.x - arrow.position.x,
+    //             CheckpointPos[current_checkpoint].position.y - arrow.position.y,
+    //             CheckpointPos[current_checkpoint].position.z - arrow.position.z);
+
+    // glm::normalize(dir);
+    // glm::vec3 upa(0,1,0);
+    // glm::vec3 cross_product = glm::normalize(glm::cross(dir, up));
+    // glm::vec3 cross_product2 = glm::normalize(glm::cross(dir, cross_product));
+    // glm::mat4 rotation(1.0f);
+    // for (int i = 0; i < 3; ++i)
+    // {
+    //     rotation[i][0] = cross_product[i];
+    //     rotation[i][1] = cross_product2[i];
+    //     rotation[i][2] = dir[i];
+    // }
+        // { cross_product[0], cross_product[1], cross_product[2], 0 },
+        // { cross_product2[0], cross_product2[1], cross_product2[2], 0 },
+        // { dir[0], dir[1], dir[2], 0 },
+        // { 0, 0, 0, 1 });
+    // upa = glm::normalize(glm::cross(dir, upa));
+    // glm::normalize(upa);
+    // // arrow.yaw = dir[2];
+    // // arrow.pitch = dir[0];
+    // // arrow.roll = dir[1];
+    // glm::vec3 eyeArrow(airplane.position);
+    // glm::vec3 targetArrow(CheckpointPos[current_checkpoint].position);
+    // glm::normalize(targetArrow);
+    // glm::normalize(eyeArrow);
     // glm::vec3 eyeArrow (airplane.position);
     // glm::vec3 targetArrow (CheckpointPos[current_checkpoint].position);
     // glm::vec3 upArrow (0, 1, 0);
-    MatricesArrow.view = glm::lookAt( eyeArrow, targetArrow, upa );
-    glm::mat4 VPArrow = MatricesArrow.projection * MatricesArrow.view;
+    // MatricesArrow.view = glm::lookAt( eyeArrow, targetArrow, upa );
+    // glm::mat4 VPArrow = Matrices.projection * Matrices.view;
     airplane.draw(VP);
-    arrow.draw(VPScore);
+    arrow.draw(VP);
     CheckpointPos[current_checkpoint].draw(VP);
     background.draw(VP);
     for (auto &x:ParachutePos)

@@ -19,11 +19,16 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     GLfloat vertex_buffer_data[9*n];
     GLfloat vertex_buffer_data1[9*n];
     GLfloat vertex_buffer_data2[18*n];
+    // GLfloat vertex_buffer_data4[9*n];
     GLfloat vertex_buffer_data5[9*n];
+    GLfloat vertex_buffer_data6[9*n];
+    GLfloat vertex_buffer_data7[9*n];
     GLfloat g_color_buffer_data[18*n];
     makePolygon(0,0,0,0.5,0.5,n,vertex_buffer_data);
     makePolygon(0,0,2.5,0.5,0.5,n,vertex_buffer_data1);
     makeCone(0,0,2.5,3,0.5,0.5,n,vertex_buffer_data5);
+    makePolygon(0,0,5,0.25,0.25,n,vertex_buffer_data6);
+    makePolygon(0,0,5,0.22,0.22,n,vertex_buffer_data7);
 
     int cur = 0;
     for (int i = 0; i < 9*n; i += 9)
@@ -74,6 +79,8 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->fan1 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_GAINS_BORO, GL_FILL);
     this->fan2 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data4, COLOR_GAINS_BORO, GL_FILL);
     this->cockpit = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data5, COLOR_BLACK, GL_FILL);
+    this->aim = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data6, COLOR_RED, GL_FILL);
+    this->aim1 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data7, COLOR_RED, GL_FILL);
 }
 
 void Airplane::draw(glm::mat4 VP) {
@@ -91,6 +98,8 @@ void Airplane::draw(glm::mat4 VP) {
     draw3DObject(this->mov);
     else
     draw3DObject(this->object);
+    // draw3DObject(this->aim);
+    // draw3DObject(this->aim1);
     draw3DObject(this->object1);
     draw3DObject(this->object2);
     draw3DObject(this->fan1);

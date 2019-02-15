@@ -25,6 +25,8 @@ private:
     VAO *fan2;
     VAO *cockpit;
     VAO *mov;
+    VAO *aim;
+    VAO *aim1;
 };
 
 #endif // BALL_H

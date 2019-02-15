@@ -8,12 +8,12 @@ Background::Background(float x, float y,float z, color_t color) {
     // Our vertices. Three consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
     // A cube has 6 faces with 2 triangles each, so this makes 6*2=12 triangles, and 12*3 vertices
     static const GLfloat vertex_buffer_data[] = {
-    	-1000.0,0.0, 1000.0,
-        1000.0, 0.0, 1000.0,
-        1000.0, 0.0, -1000.0,
-        1000.0, 0.0, -1000.0,
-        -1000.0,0.0, -1000.0,
-        -1000.0,0.0, 1000.0
+    	-1000.0,5.0, 1000.0,
+        1000.0, 5.0, 1000.0,
+        1000.0, 5.0, -1000.0,
+        1000.0, 5.0, -1000.0,
+        -1000.0,5.0, -1000.0,
+        -1000.0,5.0, 1000.0
     };
     this->object = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data, color, GL_FILL);
 }
