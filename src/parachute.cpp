@@ -53,8 +53,8 @@ Parachute::Parachute(float x, float y, float z) {
      } 
 
     float posx,posy, posz;
-    posx = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
-    posz = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
+    posx = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(50.0)));
+    posz = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(50.0)));
     posy = 30.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
     this->position = glm::vec3(posx, posy, posz);
     this->object = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data, COLOR_RED, GL_FILL);
@@ -89,8 +89,8 @@ void Parachute::tick() {
     if(this->position.y < 0.0)
     {
         float posx,posy, posz;
-        posx = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
-        posz = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
+        posx = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(50.0)));
+        posz = -50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(50.0)));
         posy  = 30.0f;
         this->set_position(posx, posy, posz);
     }

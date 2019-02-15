@@ -609,6 +609,33 @@ src/smoke.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/smoke.cpp.s
 .PHONY : src/smoke.cpp.s
 
+src/speedometer.o: src/speedometer.cpp.o
+
+.PHONY : src/speedometer.o
+
+# target to build an object file
+src/speedometer.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/speedometer.cpp.o
+.PHONY : src/speedometer.cpp.o
+
+src/speedometer.i: src/speedometer.cpp.i
+
+.PHONY : src/speedometer.i
+
+# target to preprocess a source file
+src/speedometer.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/speedometer.cpp.i
+.PHONY : src/speedometer.cpp.i
+
+src/speedometer.s: src/speedometer.cpp.s
+
+.PHONY : src/speedometer.s
+
+# target to generate assembly for a file
+src/speedometer.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/speedometer.cpp.s
+.PHONY : src/speedometer.cpp.s
+
 src/timer.o: src/timer.cpp.o
 
 .PHONY : src/timer.o
@@ -726,6 +753,9 @@ help:
 	@echo "... src/smoke.o"
 	@echo "... src/smoke.i"
 	@echo "... src/smoke.s"
+	@echo "... src/speedometer.o"
+	@echo "... src/speedometer.i"
+	@echo "... src/speedometer.s"
 	@echo "... src/timer.o"
 	@echo "... src/timer.i"
 	@echo "... src/timer.s"

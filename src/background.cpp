@@ -15,7 +15,15 @@ Background::Background(float x, float y,float z, color_t color) {
         -1000.0,5.0, -1000.0,
         -1000.0,5.0, 1000.0
     };
-    this->object = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data, color, GL_FILL);
+    static const GLfloat color_buffer_data[] = {
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 0.5f,
+        1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 0.5f,
+        0.0f, 0.0f, 1.0f,
+    };
+    this->object = create3DObject(GL_TRIANGLES, 2*3, vertex_buffer_data, color_buffer_data, GL_FILL);
 }
 
 void Background::draw(glm::mat4 VP) {

@@ -7,7 +7,7 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->yaw = 0;
     this->pitch = 0;
     this->roll = 0;
-    this->speed = 1;
+    this->speed = 0;
     this->xlength = 4;
     this->ylength = 1;
     this->zlength = 3;
@@ -113,6 +113,17 @@ void Airplane::set_position(float x, float y, float z) {
 }
 
 void Airplane::tick() {
+    // this->speed += 0.01;
+    if(this->moving == 0)
+    {
+        this->speed -= 0.01;
+        this->speed = std::max(this->speed, 0.0);
+    }
+    else
+    {
+        this->speed += 0.01;
+        this->speed = std::min(this->speed, 0.5);
+    }
     // this->rotation += speed;
     // this->position.x -= speed;
     // this->position.y -= speed;

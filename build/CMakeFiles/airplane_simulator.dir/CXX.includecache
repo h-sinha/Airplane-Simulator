@@ -165,6 +165,8 @@ arrow.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/arrow.h
 compass.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.h
+speedometer.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.h
 background.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/background.h
 parachute.h
@@ -277,6 +279,18 @@ functions.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.cpp
+speedometer.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 

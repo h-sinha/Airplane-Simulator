@@ -42,13 +42,14 @@ void Missile::set_position(float x, float y, float z) {
 }
 
 void Missile::tick() {
-    if(!this->bomb){
-    this->position.z += 0.5*cos(this->they);
-    this->position.x += 0.5*sin(this->they);
+    if(this->bomb != 1)
+    {
+        this->position.z += 0.5*cos(this->they);
+        this->position.x += 0.5*sin(this->they);
     }
     this->position.y -= 0.5*sin(this->thex);
     this->time+=(1.0f/60.f);
-    this->pitch += 0.1;
+    // this->pitch += 0.1;
 }
 
 bounding_box_t Missile::BoundingBox() {

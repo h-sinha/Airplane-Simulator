@@ -17,6 +17,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/other_handlers.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/parachute.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/speedometer.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/timer.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/volcano.cpp.o"
   "airplane_simulator.pdb"

@@ -70,6 +70,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/missile.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/parachute.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/volcano.h
 CMakeFiles/airplane_simulator.dir/src/missile.cpp.o
@@ -93,6 +94,11 @@ CMakeFiles/airplane_simulator.dir/src/smoke.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
+CMakeFiles/airplane_simulator.dir/src/speedometer.cpp.o
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.cpp
+ /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/speedometer.h
 CMakeFiles/airplane_simulator.dir/src/timer.cpp.o
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.cpp
  /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/timer.h

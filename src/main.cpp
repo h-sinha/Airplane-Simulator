@@ -8,6 +8,7 @@
 #include "checkpoint.h"
 #include "arrow.h"
 #include "compass.h"
+#include "speedometer.h"
 #include "background.h"
 #include "parachute.h"
 #include "functions.h"
@@ -36,6 +37,7 @@ Arrow arrow;
 Airplane airplane;
 Background background;
 Compass compass;
+Speed speed;
 std::vector<Parachute> ParachutePos;
 
 float screen_zoom = 2.0, screen_center_x = 0, screen_center_y = 0;
@@ -46,6 +48,7 @@ int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 int score = 0, current_checkpoint;
 time_t cam_change_time = 0.0, fuel_change_time = 0.0;
+time_t checkpoint_missile_time = 0.0;
 int fuelvolume = 12;
 string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
 double helcamxpos = 0.0, helcamypos = 0.0;
@@ -110,9 +113,6 @@ void draw() {
     // 4 helicopter_cam
      else if(cam[4])
     {
-         // eyex = airplane.position.x + 2*sin(airplane.they);
-        // eyey = airplane.position.y + 2 + 2*sin(airplane.thex);
-        // eyez = airplane.position.z + 2*cos(airplane.they);
         if(Mousexpos > helcamxpos)eyex -= 0.1;
         if(Mousexpos < helcamxpos)eyex+=0.1;
         if(Mouseypos > helcamypos)eyey-=0.1;
@@ -121,12 +121,6 @@ void draw() {
         MouseScroll = 0;
         helcamxpos = Mousexpos;
         helcamypos = Mouseypos;
-        // targetx = airplane.position.x;
-        // targety = airplane.position.y;
-        // targetz = airplane.position.z;
-        // eyex = airplane.position.x ;
-        // eyey = airplane.position.y + 3;
-        // eyez = airplane.position.z - 2;
     }
     // Eye - Location of camera. Don't change unless you are sure!!
     glm::vec3 eye (eyex, eyey, eyez );
@@ -163,14 +157,19 @@ void draw() {
    
     for (int i = int(Missilepos.size()) - 1; i >= 0 ; --i)
     {
-        if(Missilepos[i].position.y <= 0.3 || Missilepos[i].time >= 2.0)
+        if(Missilepos[i].position.y <= 0 || Missilepos[i].time >= 2.0)
         {
-            Missilepos.erase(Missilepos.begin() + i);
+            // Missilepos.erase(Missilepos.begin() + i);
             continue;
         }
     }
     for (auto &x:Missilepos)
     {
+        if(current_checkpoint < 10 && x.bomb != 2 && detect_collision(x.BoundingBox(), CheckpointPos[current_checkpoint].BoundingBox()))
+        {
+            current_checkpoint++;
+            score += 10;
+        }
         for (auto &y:ParachutePos)
         {
             if(detect_collision(x.BoundingBox(), y.BoundingBox()))
@@ -180,48 +179,33 @@ void draw() {
             }
         }
     }
-    arrow.position.x= CheckpointPos[current_checkpoint].position.x;
-    arrow.position.y= airplane.position.y + 2;
-    arrow.position.z= CheckpointPos[current_checkpoint].position.z;
-    // arrow.position.x = airplane.position.x + 5*sin(airplane.they);
-    // arrow.position.y = airplane.position.y + 5*sin(-airplane.thex);
-    // arrow.position.z = airplane.position.z + 5*cos(airplane.they);
-    // glm::vec3 dir(CheckpointPos[current_checkpoint].position.x - arrow.position.x,
-    //             CheckpointPos[current_checkpoint].position.y - arrow.position.y,
-    //             CheckpointPos[current_checkpoint].position.z - arrow.position.z);
-
-    // glm::normalize(dir);
-    // glm::vec3 upa(0,1,0);
-    // glm::vec3 cross_product = glm::normalize(glm::cross(dir, up));
-    // glm::vec3 cross_product2 = glm::normalize(glm::cross(dir, cross_product));
-    // glm::mat4 rotation(1.0f);
-    // for (int i = 0; i < 3; ++i)
-    // {
-    //     rotation[i][0] = cross_product[i];
-    //     rotation[i][1] = cross_product2[i];
-    //     rotation[i][2] = dir[i];
-    // }
-        // { cross_product[0], cross_product[1], cross_product[2], 0 },
-        // { cross_product2[0], cross_product2[1], cross_product2[2], 0 },
-        // { dir[0], dir[1], dir[2], 0 },
-        // { 0, 0, 0, 1 });
-    // upa = glm::normalize(glm::cross(dir, upa));
-    // glm::normalize(upa);
-    // // arrow.yaw = dir[2];
-    // // arrow.pitch = dir[0];
-    // // arrow.roll = dir[1];
-    // glm::vec3 eyeArrow(airplane.position);
-    // glm::vec3 targetArrow(CheckpointPos[current_checkpoint].position);
-    // glm::normalize(targetArrow);
-    // glm::normalize(eyeArrow);
-    // glm::vec3 eyeArrow (airplane.position);
-    // glm::vec3 targetArrow (CheckpointPos[current_checkpoint].position);
-    // glm::vec3 upArrow (0, 1, 0);
-    // MatricesArrow.view = glm::lookAt( eyeArrow, targetArrow, upa );
-    // glm::mat4 VPArrow = Matrices.projection * Matrices.view;
+    if(current_checkpoint < 10){
+        arrow.position.x= CheckpointPos[current_checkpoint].position.x;
+        arrow.position.y= airplane.position.y + 1;
+        arrow.position.z= CheckpointPos[current_checkpoint].position.z;
+        arrow.draw(VP);
+    }
     airplane.draw(VP);
-    arrow.draw(VP);
-    CheckpointPos[current_checkpoint].draw(VP);
+    if(current_checkpoint < 10)
+    {
+        if(time(NULL) - checkpoint_missile_time > 2.0)
+        {
+            float posx = CheckpointPos[current_checkpoint].position.x;
+            float posy = CheckpointPos[current_checkpoint].position.y;
+            float posz = CheckpointPos[current_checkpoint].position.z;
+            float anglex, angley = 0, anglez = 0;
+            float diffx = airplane.position.x - CheckpointPos[current_checkpoint].position.x;
+            float diffy = airplane.position.y - CheckpointPos[current_checkpoint].position.y;
+            float diffz = airplane.position.z - CheckpointPos[current_checkpoint].position.z;
+            float dist = sqrt(diffx*diffx + diffy*diffy + diffz*diffz);
+            anglex = atan(-diffy / dist);
+            angley = atan(diffx/diffz);
+            Missile missile = Missile(2,posx, posy, posz, anglex ,angley,anglez, COLOR_HOT_PINK);
+            Missilepos.push_back(missile);
+            checkpoint_missile_time = time(NULL);
+        }
+        CheckpointPos[current_checkpoint].draw(VP);
+    }
     background.draw(VP);
     for (auto &x:ParachutePos)
     {
@@ -260,6 +244,7 @@ void draw() {
         if(detect_collision(smk.BoundingBox(), airplane.BoundingBox()))
         {
             SmokePos.erase(SmokePos.begin() + i);
+            score += 5;
         }
     }
     for(auto &x:Missilepos)x.draw(VP);
@@ -332,14 +317,17 @@ void draw() {
             DashboardPos[i].draw(VPScore);
         }
     }
+    speed.rotation = (4*M_PI*airplane.speed);
+    // cout<<airplane.speed<<endl;
     compass.draw(VPScore);
+    speed.draw(VPScore);
 }
 
 void tick_input(GLFWwindow *window) {
-    int left  = glfwGetKey(window, GLFW_KEY_LEFT);
-    int right = glfwGetKey(window, GLFW_KEY_RIGHT);
-    int up = glfwGetKey(window, GLFW_KEY_UP);
-    int down = glfwGetKey(window, GLFW_KEY_DOWN);
+    int left  = glfwGetKey(window, GLFW_KEY_A);
+    int right = glfwGetKey(window, GLFW_KEY_D);
+    int up = glfwGetKey(window, GLFW_KEY_W);
+    int down = glfwGetKey(window, GLFW_KEY_S);
     int clock = glfwGetKey(window, GLFW_KEY_E);
     int anticlock = glfwGetKey(window, GLFW_KEY_Q);
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
@@ -374,14 +362,14 @@ void tick_input(GLFWwindow *window) {
 
     if(up){
         // airplane.position.z += 0.1;
-         airplane.position.z += 0.1*cos(-airplane.they);
-        airplane.position.x -= 0.1*sin(-airplane.they);
-        airplane.position.y += 0.1*sin(-airplane.thex);
+         airplane.position.z += airplane.speed*cos(-airplane.they);
+        airplane.position.x -= airplane.speed*sin(-airplane.they);
+        airplane.position.y += airplane.speed*sin(-airplane.thex);
         airplane.moving = 1;
     }
     if(down){
-       airplane.position.y -= 0.1;
-        airplane.position.y -= 0.1*sin(-airplane.thex);
+       airplane.position.y -= airplane.speed;
+        airplane.position.y -= airplane.speed*sin(-airplane.thex);
         airplane.moving = 1;
         if(airplane.pitch < 0.3)
         {
@@ -390,7 +378,7 @@ void tick_input(GLFWwindow *window) {
         }
     }
     if(space){
-        airplane.position.y += 0.1;
+        airplane.position.y += airplane.speed;
         airplane.moving = 1;
         if(airplane.pitch > -0.3)
         {
@@ -449,6 +437,7 @@ void tick_elements() {
         fuelvolume--;
         fuel_change_time = time(NULL);
     }
+    if(current_checkpoint < 10)
     CheckpointPos[current_checkpoint].active = 1;
     airplane.tick();
     background.tick();
@@ -482,12 +471,13 @@ void initGL(GLFWwindow *window, int width, int height) {
     Checkpoint checkpoint;
     for (int i = 0; i < 10; ++i)
     {
-        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
-        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
+        float posx = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
+        float posz = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
         checkpoint = Checkpoint(posx,0,posz);
         CheckpointPos.push_back(checkpoint);
     }
     compass = Compass(0.4,0.4,0.4);
+    speed = Speed(0.7,0.7,0.2);
     Hills hills;
     for (int i = 0; i < 200; ++i)
     {
@@ -500,25 +490,25 @@ void initGL(GLFWwindow *window, int width, int height) {
     for (int i = 0; i < 10; ++i)
     {
         float posx = -200.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(400.0)));
-        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        float posz = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
         volcano = Volcano(posx,0.0, posz);
         VolcanoPos.push_back(volcano);
     }
     Fuel fuel;
     for (int i = 0; i < 10; ++i)
     {
-        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
+        float posx = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
         float posy = 0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
-        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        float posz = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
         fuel = Fuel(posx,posy, posz);
         FuelPos.push_back(fuel);
     }
     Smoke smoke;
     for (int i = 0; i < 10; ++i)
     {
-        float posx = -20.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(40.0)));
+        float posx = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
         float posy = 0.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
-        float posz = -10.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(200.0)));
+        float posz = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
         smoke = Smoke(posx,posy, posz);
         SmokePos.push_back(smoke);
     }
