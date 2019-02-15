@@ -51,12 +51,18 @@ int current_camera = 0, gameOver = 0;
 Timer t60(1.0 / 60);
 int score = 0, current_checkpoint;
 time_t cam_change_time = 0.0, fuel_change_time = 0.0;
-time_t checkpoint_missile_time = 0.0, freeze_time = 0.0;
-int fuelvolume = 12, barrel_roll_flag;
+time_t checkpoint_missile_time = 0.0, freeze_time = 0.0, loop_start_time = 0.0;
+int fuelvolume = 12, barrel_roll_flag, loop_roll_flag;
 string ScoreBoard = "SCORE-", AltitudeBoard = "A-", FuelBoard = "F-";
 double helcamxpos = 0.0, helcamypos = 0.0;
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
+void gameover(){
+    cout<<"-----GAME OVER-----\n";
+    cout<<"Final Score - "<<score<<endl;
+    quit(window);
+
+}
 void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -333,9 +339,11 @@ void draw() {
             DashboardPos[i].draw(VPScore);
         }
     }
-    speed.rotation = (4*M_PI*airplane.speed);
+    speed.rotation = (10*M_PI*airplane.speed);
     compass.draw(VPScore);
     speed.draw(VPScore);
+    // if(airplane.y < 0.0 || gameOver)
+        // gameover();
 }
 void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_A);
@@ -347,26 +355,46 @@ void tick_input(GLFWwindow *window) {
     int space = glfwGetKey(window, GLFW_KEY_SPACE);
     int camera = glfwGetKey(window, GLFW_KEY_C);
     int barrel_roll = glfwGetKey(window, GLFW_KEY_B);
+    int loop_roll = glfwGetKey(window, GLFW_KEY_L);
     int missile = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
     int bomb = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
     airplane.moving = 0;
     if(barrel_roll){
         barrel_roll_flag = 1;
     }
+    if(loop_roll){
+        loop_roll_flag = 1;
+        loop_start_time = time(NULL);
+    }
     if(barrel_roll_flag){
         up = 1;
         clock = 1;
+    }else airplane.y = 0;
+    if(loop_roll_flag){
+        up = 1;
+        airplane.speed = 0.2;
+        airplane.pitch -= (M_PI)/120;
+        airplane.p++;
+    }
+    if(airplane.p > 240)
+    {
+        airplane.pitch += M_PI*2;
+        airplane.p = 0;
+        loop_roll_flag =0;
     }
     if(clock){
         airplane.yaw += 0.01;
-        if(barrel_roll_flag && airplane.yaw >= M_PI)barrel_roll_flag = 0;
+        airplane.y++;
+        if(barrel_roll_flag && airplane.y >= 200*M_PI)barrel_roll_flag = 0;
     }
     if(anticlock){
         airplane.yaw -= 0.01;
+        airplane.y--;
     }
     if (left) {
         // airplane.position.x += 0.1;
         airplane.roll += 0.01;
+        airplane.r++;
         // arrow.roll += 0.01;
         airplane.they += 0.01;
         compass.rotation -= 0.01;
@@ -376,6 +404,7 @@ void tick_input(GLFWwindow *window) {
 
     if(right){
         airplane.roll-=0.01;
+        airplane.r--;
         // arrow.roll -= 0.01;
         compass.rotation += 0.01;
         airplane.they -= 0.01;
@@ -564,19 +593,19 @@ void initGL(GLFWwindow *window, int width, int height) {
         else limit = 2;
         for(int i =0 ;i<limit;++i)
         {   
-            dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 2*diff, xx, yy, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current,currenty +  3.94f - xx - 2*yy - 2*diff, xx, yy, COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current+ diff,currenty + 3.94f - 2*yy - xx -3*diff, yy, xx, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current+ diff,currenty + 3.94f - 2*yy - xx -3*diff, yy, xx, COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + xx + yy,currenty + 3.94f - xx - 2*yy - 2*diff, xx, yy, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current + xx + yy,currenty + 3.94f - xx - 2*yy - 2*diff, xx, yy,  COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + xx + yy ,currenty + 3.94f - xx - yy - diff, xx, yy, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current + xx + yy ,currenty + 3.94f - xx - yy - diff, xx, yy, COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + diff,currenty + 3.94f - xx, yy, xx, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current + diff,currenty + 3.94f - xx, yy, xx, COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current,currenty + 3.94f - xx - yy - diff, xx, yy, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current,currenty + 3.94f - xx - yy - diff, xx, yy,  COLOR_GREEN);
             DashboardPos.push_back(dashboard);
-            dashboard = Dashboard(current + diff,currenty +  3.94f - xx - yy - 2*diff, yy, xx, COLOR_NEON_GREEN);
+            dashboard = Dashboard(current + diff,currenty +  3.94f - xx - yy - 2*diff, yy, xx, COLOR_GREEN);
             DashboardPos.push_back(dashboard);
             current += (2*xx + yy + diff);
         }
