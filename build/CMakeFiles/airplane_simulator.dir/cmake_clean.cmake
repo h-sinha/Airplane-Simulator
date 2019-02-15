@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/airplane_simulator.dir/src/color.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/compass.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o"
+  "CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/functions.cpp.o"
   "CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"

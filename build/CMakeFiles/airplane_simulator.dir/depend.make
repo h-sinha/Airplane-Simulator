@@ -37,6 +37,11 @@ CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.cpp
 CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/dashboard.h
 CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o: ../src/main.h
 
+CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o: ../src/freeze.cpp
+CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o: ../src/freeze.h
+CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o: ../src/functions.h
+CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o: ../src/main.h
+
 CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/fuel.cpp
 CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/fuel.h
 CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o: ../src/functions.h
@@ -61,6 +66,7 @@ CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/ball.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/checkpoint.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/compass.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/dashboard.h
+CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/freeze.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/fuel.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/functions.h
 CMakeFiles/airplane_simulator.dir/src/main.cpp.o: ../src/hills.h

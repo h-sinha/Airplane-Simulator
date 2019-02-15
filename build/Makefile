@@ -339,6 +339,33 @@ src/dashboard.cpp.s:
 	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.s
 .PHONY : src/dashboard.cpp.s
 
+src/freeze.o: src/freeze.cpp.o
+
+.PHONY : src/freeze.o
+
+# target to build an object file
+src/freeze.cpp.o:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o
+.PHONY : src/freeze.cpp.o
+
+src/freeze.i: src/freeze.cpp.i
+
+.PHONY : src/freeze.i
+
+# target to preprocess a source file
+src/freeze.cpp.i:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/freeze.cpp.i
+.PHONY : src/freeze.cpp.i
+
+src/freeze.s: src/freeze.cpp.s
+
+.PHONY : src/freeze.s
+
+# target to generate assembly for a file
+src/freeze.cpp.s:
+	$(MAKE) -f CMakeFiles/airplane_simulator.dir/build.make CMakeFiles/airplane_simulator.dir/src/freeze.cpp.s
+.PHONY : src/freeze.cpp.s
+
 src/fuel.o: src/fuel.cpp.o
 
 .PHONY : src/fuel.o
@@ -723,6 +750,9 @@ help:
 	@echo "... src/dashboard.o"
 	@echo "... src/dashboard.i"
 	@echo "... src/dashboard.s"
+	@echo "... src/freeze.o"
+	@echo "... src/freeze.i"
+	@echo "... src/freeze.s"
 	@echo "... src/fuel.o"
 	@echo "... src/fuel.i"
 	@echo "... src/fuel.s"

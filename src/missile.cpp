@@ -15,6 +15,7 @@ Missile::Missile(int bomb,float x, float y, float z, float anglex, float angley,
     this->speed = 0.05f;
     this->thex = anglex;
     this->they = angley;
+    this->thez = anglez;
     this->time = 0;
     int n = 25;
     GLfloat vertex_buffer_data[36*n];
@@ -31,7 +32,7 @@ void Missile::draw(glm::mat4 VP) {
     glm::mat4 yrotate    = glm::rotate((float) (this->they* M_PI / 180.0f), glm::vec3(0, 1, 0));
     // No need as coords centeBLACK at 0, 0, 0 of cube arouund which we waant to rotate
     // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
-    Matrices.model *= (translate);
+    Matrices.model *= (translate );
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
@@ -42,14 +43,20 @@ void Missile::set_position(float x, float y, float z) {
 }
 
 void Missile::tick() {
-    if(this->bomb != 1)
-    {
+    if(this->bomb == 2){
         this->position.z += 0.5*cos(this->they);
         this->position.x += 0.5*sin(this->they);
+        this->position.y -= 0.5*sin(this->thex);
+        this->time+=(1.0f/60.f);
+        return;
     }
-    this->position.y -= 0.5*sin(this->thex);
+    if(this->bomb != 1)
+    {
+        this->position.z += 0.5*thez;
+        this->position.x += 0.5*thex;
+    }
+    this->position.y -= 0.5*they;
     this->time+=(1.0f/60.f);
-    // this->pitch += 0.1;
 }
 
 bounding_box_t Missile::BoundingBox() {

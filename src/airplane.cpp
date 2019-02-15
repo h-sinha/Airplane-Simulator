@@ -15,6 +15,7 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     this->thex = 0;
     this->they = 0;
     this->thez = 0;
+    this->y = this->p = this->r = 0;
     int n = 25;
     GLfloat vertex_buffer_data[9*n];
     GLfloat vertex_buffer_data1[9*n];
@@ -91,7 +92,12 @@ void Airplane::draw(glm::mat4 VP) {
     glm::mat4 yrotate    = glm::rotate((float) (this->roll), glm::vec3(0, 1, 0));
     // No need as coords centeBLACK at 0, 0, 0 of cube arouund which we waant to rotate
     // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
-    Matrices.model *= (translate *  yrotate * zrotate * xrotate);
+    this->yaw = this->pitch = this->roll = 0.0;
+    Matrices.model *= (translate *MatrixRotPlain*  yrotate * zrotate * xrotate);
+    MatrixRotPlain *= zrotate * yrotate * xrotate;
+    // glm::normalize(MatrixRotPlain[0]);
+    // glm::normalize(MatrixRotPlain[1]);
+    // glm::normalize(MatrixRotPlain[2]);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     if(this->moving)
@@ -116,13 +122,13 @@ void Airplane::tick() {
     // this->speed += 0.01;
     if(this->moving == 0)
     {
-        this->speed -= 0.01;
+        this->speed -= 0.1/60;
         this->speed = std::max(this->speed, 0.0);
     }
     else
     {
-        this->speed += 0.01;
-        this->speed = std::min(this->speed, 0.5);
+        this->speed += 0.1/60;
+        this->speed = std::min(this->speed, 0.2);
     }
     // this->rotation += speed;
     // this->position.x -= speed;

@@ -90,6 +90,18 @@ main.h
 main.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/freeze.cpp
+freeze.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/freeze.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+functions.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.h
+
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/freeze.h
+main.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
+
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.cpp
 fuel.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.h
@@ -179,6 +191,8 @@ fuel.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.h
 smoke.h
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/smoke.h
+freeze.h
+/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/freeze.h
 
 /home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/main.h
 iostream

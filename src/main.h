@@ -62,6 +62,7 @@ struct GLMatrices {
 };
 
 extern GLMatrices Matrices;
+extern glm::mat4 MatrixRotPlain;
 
 // ---- Logic ----
 

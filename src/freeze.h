@@ -1,24 +1,27 @@
 #include "main.h"
 
-#ifndef MISSILE_H
-#define MISSILE_H
+#ifndef FREEZE_H
+#define FREEZE_H
 
 
-class Missile {
+class Freeze {
 public:
-    Missile() {}
-    Missile(int bomb,float x, float y,float z,float anglex, float angley,float anglez, color_t color);
+    Freeze() {}
+    Freeze(float x, float y,float z);
     glm::vec3 position;
     float yaw, pitch, roll;
-    int bomb;
-    bounding_box_t BoundingBox();
     void draw(glm::mat4 VP);
+    bounding_box_t BoundingBox();
     void set_position(float x, float y, float z);
     void tick();
-    double speed, thex, they,thez, time;
+    double speed;
     double xlength, ylength, zlength;
 private:
     VAO *object;
+    VAO *object1;
+    VAO *object2;
+    VAO *object3;
+    VAO *object4;
 };
 
 #endif // BALL_H

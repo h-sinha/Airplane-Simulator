@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/color.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/color.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/compass.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/compass.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/dashboard.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/dashboard.cpp.o"
+  "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/freeze.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/freeze.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/fuel.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/fuel.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/functions.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/functions.cpp.o"
   "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/src/hills.cpp" "/home/harsh/acads/sem4/Graphics/assignments/Airplane-Simulator/build/CMakeFiles/airplane_simulator.dir/src/hills.cpp.o"

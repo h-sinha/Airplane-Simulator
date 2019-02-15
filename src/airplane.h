@@ -11,6 +11,7 @@ public:
     glm::vec3 position;
     int moving;
     float yaw, pitch, roll;
+    int y,p,r;
     void draw(glm::mat4 VP);
     bounding_box_t BoundingBox();
     void set_position(float x, float y, float z);
