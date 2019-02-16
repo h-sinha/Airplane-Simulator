@@ -86,6 +86,9 @@ void draw() {
         eyex = airplane.position.x + 2*MatrixRotPlain[1][0] - 2*MatrixRotPlain[2][0];
         eyey = airplane.position.y + 2*MatrixRotPlain[1][1] - 2*MatrixRotPlain[2][1];
         eyez = airplane.position.z + 2*MatrixRotPlain[1][2] - 2*MatrixRotPlain[2][2];
+        upx = MatrixRotPlain[1][0];
+        upy = MatrixRotPlain[1][1];
+        upz = MatrixRotPlain[1][2];
     }
     // 1 plane_view
     else if(cam[1])
@@ -191,7 +194,7 @@ void draw() {
     }
     if(current_checkpoint < 10){
         arrow.position.x= CheckpointPos[current_checkpoint].position.x;
-        arrow.position.y= airplane.position.y + 1;
+        arrow.position.y= std::max(airplane.position.y - 2, 2.0f);
         arrow.position.z= CheckpointPos[current_checkpoint].position.z;
         arrow.draw(VP);
     }

@@ -57,7 +57,7 @@ Parachute::Parachute(float x, float y, float z) {
     posz = -100.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(100.0)));
     posy = 30.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(20.0)));
     this->position = glm::vec3(posx, posy, posz);
-    this->object = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data, COLOR_RED, GL_FILL);
+    this->object = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data, COLOR_NEON_GREEN, GL_FILL);
     this->object1 = create3DObject(GL_LINES, 2*n, vertex_buffer_data1, COLOR_BLACK, GL_FILL);
     this->object2 = create3DObject(GL_TRIANGLES, 3*n, vertex_buffer_data2, color_buffer_data, GL_FILL);
 }
