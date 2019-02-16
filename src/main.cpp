@@ -178,10 +178,15 @@ void draw() {
     }
     for (auto &x:Missilepos)
     {
-        if(current_checkpoint < 10 && x.bomb != 2 && detect_collision(x.BoundingBox(), CheckpointPos[current_checkpoint].BoundingBox()))
+        if(current_checkpoint < 10 && (x.bomb == 0 || x.bomb == 1) && detect_collision(x.BoundingBox(), CheckpointPos[current_checkpoint].BoundingBox()))
         {
             current_checkpoint++;
             score += 10;
+        }
+        if(x.bomb == 2 && detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+        {
+            fuelvolume--;
+            x.bomb = 5;
         }
         for (auto &y:ParachutePos)
         {
@@ -194,7 +199,7 @@ void draw() {
     }
     if(current_checkpoint < 10){
         arrow.position.x= CheckpointPos[current_checkpoint].position.x;
-        arrow.position.y= std::max(airplane.position.y - 2, 2.0f);
+        arrow.position.y= std::max(airplane.position.y - 1, 2.0f);
         arrow.position.z= CheckpointPos[current_checkpoint].position.z;
         arrow.draw(VP);
     }
@@ -345,8 +350,8 @@ void draw() {
     speed.rotation = (10*M_PI*airplane.speed);
     compass.draw(VPScore);
     speed.draw(VPScore);
-    // if(airplane.y < 0.0 || gameOver)
-        // gameover();
+    if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
+        gameover();
 }
 void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_A);
@@ -425,7 +430,7 @@ void tick_input(GLFWwindow *window) {
        airplane.position.y -= airplane.speed;
         airplane.position.y -= airplane.speed*sin(-airplane.thex);
         airplane.moving = 1;
-        if(airplane.p < 3)
+        if(airplane.p < 5)
         {
             airplane.p++;
             airplane.pitch += 0.01;
@@ -435,7 +440,7 @@ void tick_input(GLFWwindow *window) {
     if(space){
         airplane.position.y += airplane.speed;
         airplane.moving = 1;
-        if(airplane.p > -3)
+        if(airplane.p > -5)
         {
             airplane.pitch -= 0.01;
             airplane.p--;

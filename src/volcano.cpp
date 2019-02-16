@@ -13,10 +13,13 @@ Volcano::Volcano(float x, float y, float z) {
     this->zlength = 1.6;
     int n = 10;
     GLfloat vertex_buffer_data[36*n];
+    GLfloat vertex_buffer_data1[36*n];
     GLfloat color_buffer_data[36*n];
     makeFrustum(0,0,0,0.8,0.1,1.0,n, vertex_buffer_data);
     makeFrustum(0,0,0,0.4,0.2,0.8,n, color_buffer_data);
+    makeFrustum(0,1.0,0,0.02,0.02,1000,n, vertex_buffer_data1);
     this->object = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data, color_buffer_data, GL_FILL);
+    this->object1 = create3DObject(GL_TRIANGLES, n*12, vertex_buffer_data1,COLOR_RED, GL_FILL);
 }
 
 void Volcano::draw(glm::mat4 VP) {
@@ -31,6 +34,7 @@ void Volcano::draw(glm::mat4 VP) {
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
+    draw3DObject(this->object1);
 }
 
 void Volcano::set_position(float x, float y, float z) {

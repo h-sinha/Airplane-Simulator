@@ -9,10 +9,10 @@ Missile::Missile(int bomb,float x, float y, float z, float anglex, float angley,
     this->bomb = bomb;
     this->roll = 0;
     this->speed = 1;
+    // if(bomb == 2)this->speed = 0.4;
     this->xlength = 0.2;
     this->ylength = 0.2;
     this->zlength = 0.2;
-    this->speed = 0.05f;
     this->thex = anglex;
     this->they = angley;
     this->thez = anglez;
@@ -44,18 +44,18 @@ void Missile::set_position(float x, float y, float z) {
 
 void Missile::tick() {
     if(this->bomb == 2){
-        this->position.z += 0.5*cos(this->they);
-        this->position.x += 0.5*sin(this->they);
-        this->position.y -= 0.5*sin(this->thex);
+        this->position.z += this->speed*cos(this->they);
+        this->position.x += this->speed*sin(this->they);
+        this->position.y -= this->speed*sin(this->thex);
         this->time+=(1.0f/60.f);
         return;
     }
     if(this->bomb != 1)
     {
-        this->position.z += 0.5*thez;
-        this->position.x += 0.5*thex;
+        this->position.z += this->speed*thez;
+        this->position.x += this->speed*thex;
     }
-    this->position.y -= 0.5*they;
+    this->position.y -= this->speed*they;
     this->time+=(1.0f/60.f);
 }
 
