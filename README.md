@@ -9,6 +9,8 @@ A 3D game made using OpenGL.
 * Q - Anticlockwise Roll
 * E - Clockwise Roll
 * C - Change Camera View
+* B - Perform Barrel Roll
+* L - Perform Looping the loop
 * Left Mouse Button - Shoot Missile
 * Right Mouse Button - Drop Bomb
 * Mouse Scroll - Zoom In/Out
