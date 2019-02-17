@@ -63,7 +63,16 @@ void gameover(){
     quit(window);
 
 }
+void won(){
+    cout<<"-----YOU WON-----\n";
+    cout<<"Final Score - "<<score<<endl;
+    quit(window);
+
+}
 void draw() {
+    if(current_checkpoint>=10){
+        won();
+    }
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // use the loaded shader program
@@ -206,9 +215,20 @@ void draw() {
         }
     }
     if(current_checkpoint < 10){
+        float diffx = airplane.position.x - CheckpointPos[current_checkpoint].position.x;
+        float diffy = airplane.position.y - CheckpointPos[current_checkpoint].position.y;
+        float diffz = airplane.position.z - CheckpointPos[current_checkpoint].position.z;
+        float dist = sqrt(diffx*diffx + diffy*diffy + diffz*diffz);
+        if(dist > 30){
+        arrow.position.x= airplane.position.x + 30*(-diffx/dist);
+        arrow.position.y= std::max(airplane.position.y - 1, 2.0f);
+        arrow.position.z= airplane.position.z + 30*(-diffz/dist);
+        }
+        else{
         arrow.position.x= CheckpointPos[current_checkpoint].position.x;
         arrow.position.y= std::max(airplane.position.y - 1, 2.0f);
         arrow.position.z= CheckpointPos[current_checkpoint].position.z;
+        }
         arrow.draw(VP);
     }
     airplane.draw(VP);
@@ -241,8 +261,6 @@ void draw() {
     for (auto &x:ParachutePos)
     {
         x.draw(VP);
-        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
-            gameOver = 1;
     }
     for(auto &x:Hillpos)
     {
@@ -363,7 +381,7 @@ void draw() {
     speed.rotation = (10*M_PI*airplane.speed);
     compass.draw(VPScore);
     speed.draw(VPScore);
-    if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
+    if(airplane.position.y < 0.0 || gameOver || fuelvolume <= 0)
         gameover();
 }
 void tick_input(GLFWwindow *window) {
@@ -542,7 +560,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Create the models
     cam[0] = 1;
     ball1       = Ball(3.0, 3.0,0, COLOR_RED);
-    airplane       = Airplane(0.0, 0.0,0, COLOR_RED);
+    airplane    = Airplane(0.0, 0.0,0, COLOR_RED);
     background  = Background(0, 0,0, COLOR_WATER);
     arrow = Arrow(airplane.position.x, airplane.position.y + 0.2, airplane.position.z + 3.5);
     Checkpoint checkpoint;
