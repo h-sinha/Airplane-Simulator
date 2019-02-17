@@ -9,13 +9,19 @@ Missile::Missile(int bomb,float x, float y, float z, float anglex, float angley,
     this->bomb = bomb;
     this->roll = 0;
     this->speed = 1;
-    // if(bomb == 2)this->speed = 0.4;
+    if(bomb == 2)this->speed = 0.4;
     this->xlength = 0.2;
     this->ylength = 0.2;
     this->zlength = 0.2;
     this->thex = anglex;
     this->they = angley;
     this->thez = anglez;
+    if(this->bomb == 0)
+    {
+        this->thex = MatrixRotPlain[2][0];
+        this->they = MatrixRotPlain[2][1];
+        this->thez = MatrixRotPlain[2][2];
+    }
     this->time = 0;
     int n = 25;
     GLfloat vertex_buffer_data[36*n];
@@ -44,16 +50,19 @@ void Missile::set_position(float x, float y, float z) {
 
 void Missile::tick() {
     if(this->bomb == 2){
-        this->position.z += this->speed*cos(this->they);
-        this->position.x += this->speed*sin(this->they);
-        this->position.y -= this->speed*sin(this->thex);
+        this->position.z += this->speed*this->thez;
+        this->position.x += this->speed*this->thex;
+        this->position.y += this->speed*this->they;
         this->time+=(1.0f/60.f);
         return;
     }
-    if(this->bomb != 1)
+    if(this->bomb == 0)
     {
-        this->position.z += this->speed*thez;
-        this->position.x += this->speed*thex;
+        this->position.z += this->thez;
+        this->position.y += this->they;
+        this->position.x += this->thex;
+        this->time+=(1.0f/60.f);
+        return;
     }
     this->position.y -= this->speed*they;
     this->time+=(1.0f/60.f);

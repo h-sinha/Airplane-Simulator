@@ -176,10 +176,17 @@ void draw() {
             continue;
         }
     }
+    for(auto &x:CheckpointPos)
+    {
+        if(detect_collision(x.BoundingBox(), airplane.BoundingBox()))
+            gameOver = 1;
+        x.draw(VP);
+    }
     for (auto &x:Missilepos)
     {
         if(current_checkpoint < 10 && (x.bomb == 0 || x.bomb == 1) && detect_collision(x.BoundingBox(), CheckpointPos[current_checkpoint].BoundingBox()))
         {
+            CheckpointPos.erase(current_checkpoint + CheckpointPos.begin());
             current_checkpoint++;
             score += 10;
         }
@@ -187,6 +194,7 @@ void draw() {
         {
             fuelvolume--;
             x.bomb = 5;
+            x.position.y = -1000;
         }
         for (auto &y:ParachutePos)
         {
@@ -216,8 +224,13 @@ void draw() {
             float diffy = airplane.position.y - CheckpointPos[current_checkpoint].position.y;
             float diffz = airplane.position.z - CheckpointPos[current_checkpoint].position.z;
             float dist = sqrt(diffx*diffx + diffy*diffy + diffz*diffz);
-            anglex = atan(-diffy / dist);
-            angley = atan(diffx/diffz);
+            // anglex = atan(-diffy / dist);
+            // angley = atan(diffx/diffz);
+            // if(diffx<0 && diffz < 0)angley += M_PI;
+            // if(dist * cos(angley))
+            anglex = diffx/dist;
+            angley = diffy/dist;
+            anglez = diffz/dist;
             Missile missile = Missile(2,posx, posy, posz, anglex ,angley,anglez, COLOR_HOT_PINK);
             Missilepos.push_back(missile);
             checkpoint_missile_time = time(NULL);
@@ -350,8 +363,8 @@ void draw() {
     speed.rotation = (10*M_PI*airplane.speed);
     compass.draw(VPScore);
     speed.draw(VPScore);
-    if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
-        gameover();
+    // if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
+    //     gameover();
 }
 void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_A);
