@@ -8,9 +8,9 @@ Volcano::Volcano(float x, float y, float z) {
     this->pitch = 0;
     this->roll = 0;
     this->speed = 1;
-    this->xlength = 1.6;
+    this->xlength = 1.2;
     this->ylength = 100;
-    this->zlength = 1.6;
+    this->zlength = 1.2;
     int n = 10;
     GLfloat vertex_buffer_data[36*n];
     GLfloat vertex_buffer_data1[36*n];

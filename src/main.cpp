@@ -363,8 +363,8 @@ void draw() {
     speed.rotation = (10*M_PI*airplane.speed);
     compass.draw(VPScore);
     speed.draw(VPScore);
-    // if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
-    //     gameover();
+    if(airplane.y < 0.0 || gameOver || fuelvolume <= 0)
+        gameover();
 }
 void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_A);

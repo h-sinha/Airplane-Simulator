@@ -64,7 +64,7 @@ void Missile::tick() {
         this->time+=(1.0f/60.f);
         return;
     }
-    this->position.y -= this->speed*they;
+    this->position.y -= this->speed;
     this->time+=(1.0f/60.f);
 }
 
