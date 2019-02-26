@@ -14,8 +14,6 @@ Smoke::Smoke(float x, float y, float z) {
     int n = 10;
     GLfloat vertex_buffer_data[36*n];
     GLfloat vertex_buffer_data1[36*n];
-    // makeFrustum(0,0,0,0.2, 0.2, 0.2, n, vertex_buffer_data);
-    // makeFrustum(0,0,0,0.1, 0.1, 0.2, n, vertex_buffer_data1);
     makePolygon(0,0,0,0.5,0.5,n,vertex_buffer_data);
     makePolygon(0,0,0.2,0.5,0.5,n,vertex_buffer_data1);
     this->object = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data, COLOR_HOT_PINK, GL_FILL);
@@ -29,14 +27,11 @@ void Smoke::draw(glm::mat4 VP) {
     glm::mat4 zrotate    = glm::rotate((float) (this->yaw * M_PI / 180.0f), glm::vec3(0, 0, 1));
     glm::mat4 xrotate    = glm::rotate((float) (this->pitch * M_PI / 180.0f), glm::vec3(1, 0, 0));
     glm::mat4 yrotate    = glm::rotate((float) (this->roll * M_PI / 180.0f), glm::vec3(0, 1, 0));
-    // No need as coords centeBROWN at 0, 0, 0 of cube arouund which we waant to rotate
-    // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
     Matrices.model *= (translate * zrotate * xrotate * yrotate);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
     draw3DObject(this->object1);
-    // draw3DObject(this->object2);
 }
 
 void Smoke::set_position(float x, float y, float z) {
@@ -44,9 +39,6 @@ void Smoke::set_position(float x, float y, float z) {
 }
 
 void Smoke::tick() {
-    // this->rotation += speed;
-    // this->position.x -= speed;
-    // this->position.y -= speed;
 }
 
 bounding_box_t Smoke::BoundingBox() {

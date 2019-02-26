@@ -244,10 +244,6 @@ void draw() {
             float diffy = airplane.position.y - CheckpointPos[current_checkpoint].position.y;
             float diffz = airplane.position.z - CheckpointPos[current_checkpoint].position.z;
             float dist = sqrt(diffx*diffx + diffy*diffy + diffz*diffz);
-            // anglex = atan(-diffy / dist);
-            // angley = atan(diffx/diffz);
-            // if(diffx<0 && diffz < 0)angley += M_PI;
-            // if(dist * cos(angley))
             anglex = diffx/dist;
             angley = diffy/dist;
             anglez = diffz/dist;
@@ -475,16 +471,8 @@ void tick_input(GLFWwindow *window) {
         {
             airplane.pitch -= 0.01;
             airplane.p--;
-            // arrow.pitch -= 0.01;
             airplane.thex -= 0.01;
         }
-        // airplane.thex -= 0.1;
-    }
-    else
-    {
-        // airplane.pitch = min(airplane.pitch+0.1f,0.0f);
-        // airplane.thex = min(airplane.thex+0.1f,0.0f);
-        // airplane.position.y = max(airplane.position.y-0.1,0.0);
     }
     if(camera && time(NULL) - cam_change_time > 0.5)
     {
@@ -549,8 +537,6 @@ void tick_elements() {
     {
         x.tick();
     }
-    // background.set_position(ball1.position.x,ball1.position.y,ball1.position.z );
-    // camera_rotation_angle += 1;
 }
 
 /* Initialize the OpenGL rendering properties */
@@ -732,14 +718,6 @@ void reset_screen() {
     float bottom = screen_center_y - 4 / screen_zoom;
     float left   = screen_center_x - 4 / screen_zoom;
     float right  = screen_center_x + 4 / screen_zoom;
-    // Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
-     // gluPerspective(1.0f, width/height, 0.1f, 500.0f);
-    // glMatrixMode(GL_MODELVIEW);
-    // glViewport(0, 0, width, height);
-//     float top    = 10 / screen_zoom;
-//     float bottom = 0;
-//     float left   = 0;
-//     float right  = 10 / screen_zoom;
     Matrices.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);
     MatricesScore.projection = glm::ortho(0.0f, 4.0f, 4.0f, 0.0f, 0.1f, 500.0f);
     MatricesArrow.projection = glm::perspective(float(90*M_PI/180), width/height, 0.1f, 5000.0f);

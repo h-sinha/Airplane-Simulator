@@ -20,7 +20,6 @@ Airplane::Airplane(float x, float y, float z,color_t color) {
     GLfloat vertex_buffer_data[9*n];
     GLfloat vertex_buffer_data1[9*n];
     GLfloat vertex_buffer_data2[18*n];
-    // GLfloat vertex_buffer_data4[9*n];
     GLfloat vertex_buffer_data5[9*n];
     GLfloat vertex_buffer_data6[9*n];
     GLfloat vertex_buffer_data7[9*n];
@@ -90,22 +89,15 @@ void Airplane::draw(glm::mat4 VP) {
     glm::mat4 zrotate    = glm::rotate((float) (this->yaw), glm::vec3(0, 0, 1));
     glm::mat4 xrotate    = glm::rotate((float) (this->pitch), glm::vec3(1, 0, 0));
     glm::mat4 yrotate    = glm::rotate((float) (this->roll), glm::vec3(0, 1, 0));
-    // No need as coords centeBLACK at 0, 0, 0 of cube arouund which we waant to rotate
-    // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
     this->yaw = this->pitch = this->roll = 0.0;
     Matrices.model *= (translate *MatrixRotPlain*  yrotate * zrotate * xrotate);
     MatrixRotPlain *= zrotate * yrotate * xrotate;
-    // glm::normalize(MatrixRotPlain[0]);
-    // glm::normalize(MatrixRotPlain[1]);
-    // glm::normalize(MatrixRotPlain[2]);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     if(this->moving)
     draw3DObject(this->mov);
     else
     draw3DObject(this->object);
-    // draw3DObject(this->aim);
-    // draw3DObject(this->aim1);
     draw3DObject(this->object1);
     draw3DObject(this->object2);
     draw3DObject(this->fan1);
@@ -119,7 +111,6 @@ void Airplane::set_position(float x, float y, float z) {
 }
 
 void Airplane::tick() {
-    // this->speed += 0.01;
     if(this->moving == 0)
     {
         this->speed -= 0.1/60;
@@ -130,9 +121,6 @@ void Airplane::tick() {
         this->speed += 0.1/60;
         this->speed = std::min(this->speed, 0.2);
     }
-    // this->rotation += speed;
-    // this->position.x -= speed;
-    // this->position.y -= speed;
 }
 
 bounding_box_t Airplane::BoundingBox() {

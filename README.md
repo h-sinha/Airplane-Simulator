@@ -1,5 +1,6 @@
 # Airplane-Simulator
 A 3D game made using OpenGL.
+![alt text](https://github.com/h-sinha/Airplane-Simulator/blob/master/screenshot.jpg)
 ### Controls
 * W - Move Forward
 * A - Turn Left

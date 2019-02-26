@@ -13,7 +13,6 @@ Fuel::Fuel(float x, float y, float z) {
     this->zlength = 0.2;
     int n = 10;
     GLfloat vertex_buffer_data[36*n];
-    // GLfloat  color_buffer_data[36*n];
     makeCube(0,0,0,0.4, 0.4, 0.4, vertex_buffer_data);
    const GLfloat color_buffer_data[] = {
     0.583f,  0.771f,  0.014f,
@@ -63,14 +62,10 @@ void Fuel::draw(glm::mat4 VP) {
     glm::mat4 zrotate    = glm::rotate((float) (this->yaw * M_PI / 180.0f), glm::vec3(0, 0, 1));
     glm::mat4 xrotate    = glm::rotate((float) (this->pitch * M_PI / 180.0f), glm::vec3(1, 0, 0));
     glm::mat4 yrotate    = glm::rotate((float) (this->roll * M_PI / 180.0f), glm::vec3(0, 1, 0));
-    // No need as coords centeBROWN at 0, 0, 0 of cube arouund which we waant to rotate
-    // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
     Matrices.model *= (translate * zrotate * xrotate * yrotate);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
     draw3DObject(this->object);
-    // draw3DObject(this->object1);
-    // draw3DObject(this->object2);
 }
 
 void Fuel::set_position(float x, float y, float z) {
@@ -78,9 +73,6 @@ void Fuel::set_position(float x, float y, float z) {
 }
 
 void Fuel::tick() {
-    // this->rotation += speed;
-    // this->position.x -= speed;
-    // this->position.y -= speed;
 }
 
 bounding_box_t Fuel::BoundingBox() {

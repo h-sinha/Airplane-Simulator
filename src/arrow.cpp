@@ -39,27 +39,9 @@ Arrow::Arrow(float x, float y, float z) {
         0.2f, 0.2f, 0.0f,
 
     };
-      // GLfloat color_buffer_data[54];
-      // for (int i = 0; i < 54; i += 3)
-      // {
-      //   if(i < 9)
-      //   {
-      //       color_buffer_data[i] = COLOR_RED.r;
-      //       color_buffer_data[i + 1] = COLOR_RED.g;
-      //       color_buffer_data[i + 2] = COLOR_RED.b;
-      //   }
-      //   else
-      //   {
-      //       color_buffer_data[i] = COLOR_BLACK.r;
-      //       color_buffer_data[i + 1] = COLOR_BLACK.g;
-      //       color_buffer_data[i + 2] = COLOR_BLACK.b;
-      //   }
-      // }
     makeCube(0,0.1,0,0.12,0.1, 0.6, vertex_buffer_data1);
     this->object = create3DObject(GL_TRIANGLES, 6*3, vertex_buffer_data, COLOR_RED, GL_FILL);
     this->object1 = create3DObject(GL_TRIANGLES, 3*12, vertex_buffer_data1, COLOR_RED, GL_FILL);
-    // this->object2 = create3DObject(GL_TRIANGLES, n*3, vertex_buffer_data2, COLOR_BLACK, GL_FILL);
-    // this->object3 = create3DObject(GL_TRIANGLES, 3, vertex_buffer_data3, COLOR_RED, GL_FILL);
 }
 
 void Arrow::draw(glm::mat4 VP) {
@@ -69,8 +51,6 @@ void Arrow::draw(glm::mat4 VP) {
     glm::mat4 xrotate    = glm::rotate((float) ( M_PI / 2.0f), glm::vec3(1, 0, 0));
     glm::mat4 yrotate    = glm::rotate((float) (this->roll * M_PI / 180.0f), glm::vec3(0, 1, 0));
     glm::mat4 scl    = glm::scale(glm::vec3(4.0f, 4.0f, 4.0f));
-    // No need as coords centeBROWN at 0, 0, 0 of cube arouund which we waant to rotate
-    // rotate          = rotate * glm::translate(glm::vec3(0, -0.6, 0));
     Matrices.model *= (translate * zrotate * xrotate * yrotate *scl);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -83,9 +63,6 @@ void Arrow::set_position(float x, float y, float z) {
 }
 
 void Arrow::tick() {
-    // this->rotation += speed;
-    // this->position.x -= speed;
-    // this->position.y -= speed;
 }
 
 bounding_box_t Arrow::BoundingBox() {
